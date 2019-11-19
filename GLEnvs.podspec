@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'GLEnvs'
-  s.version          = '1.2.3'
+  s.version          = '1.2.4'
   s.summary          = 'GLEnvs By liguoliang'
 
 # This description is used to generate tags and improve search results.
@@ -25,13 +25,14 @@ Pod::Spec.new do |s|
   * 1.2.1 opt 优化当前环境显示问题，从小方块修改成全屏条幅
   * 1.2.2 fix 修复一个崩溃Bug，对event做类型验证然后再进行后续操作
   * 1.2.3 修复一个方法交换问题，增加版本号显示
+  * 1.2.4 迁移至Github
     DESC
 
-  s.homepage         = 'http://gitlab.wdcloud.cc:10080/iosbase/GLEnvs'
+  s.homepage         = 'https://github.com/GL9700/GLEnvs'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'liguoliang' => 'guoliang@51jianjiao.com' }
-  s.source           = { :git => 'http://gitlab.wdcloud.cc:10080/iosbase/GLEnvs.git', :tag => s.version.to_s }
+  s.author           = { 'liguoliang' => '36617161@qq.com' }
+  s.source           = { :git => 'https://github.com/GL9700/GLEnvs.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '8.0'
