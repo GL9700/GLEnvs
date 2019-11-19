@@ -1,0 +1,16 @@
+PODS:
+  - GLEnvs (1.2.2)
+
+DEPENDENCIES:
+  - GLEnvs (from `../`)
+
+EXTERNAL SOURCES:
+  GLEnvs:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  GLEnvs: ed76d7596de183f77bcc317c01d0346479c91165
+
+PODFILE CHECKSUM: 69d1859d06bdf603a4ac45cafaf0d8528be1c06a
+
+COCOAPODS: 1.8.3
