@@ -9,21 +9,22 @@
 #import <UIKit/UIKit.h>
 #import "GLEnvsCustomController.h"
 
-#define kGLEnvsNameKey @"EnvsNameKey"
-#define kGLEnvsInfoKey @"EnvsInfoKey"
-#define kArchivePath [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES).firstObject stringByAppendingPathComponent:@"GLENV.data"]
-#define kGLEnvsCustomTitle @"自定义"
+#define kGLEnvsNameKey        @"EnvsNameKey"
+#define kGLEnvsInfoKey        @"EnvsInfoKey"
+#define kArchivePath          [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES).firstObject stringByAppendingPathComponent:@"GLENV.data"]
+#define kGLEnvsCustomTitle    @"自定义"
 #define kGLEnvsSelectorTipStr @"*** 切换环境后,程序将自动退出 ***"
 
-typedef void (* VIM) (id , SEL , ...);
-@interface GLEnvs()
+typedef void (*VIM) (id, SEL, ...);
+@interface GLEnvs ()
 {
     BOOL inScreen;
 }
-@property (nonatomic , strong) NSArray *envs;
+@property (nonatomic, strong) NSArray *envs;
 @end
 
 static GLEnvs *instance;
+
 @implementation GLEnvs
 
 + (GLEnvs *)defaultEnvs {
@@ -34,9 +35,8 @@ static GLEnvs *instance;
     return instance;
 }
 
-+ (GLEnvs *)defaultWithEnvironments:(NSArray<NSDictionary *>*)envs{
-    if(!instance)
-        [GLEnvs defaultEnvs];
++ (GLEnvs *)defaultWithEnvironments:(NSArray<NSDictionary *> *)envs {
+    if (!instance) [GLEnvs defaultEnvs];
     instance.envs = envs;
     return instance;
 }
@@ -51,23 +51,22 @@ static GLEnvs *instance;
     return dic.allKeys.firstObject;
 }
 
-+ (BOOL)saveEnv:(NSDictionary *)eInfo{
++ (BOOL)saveEnv:(NSDictionary *)eInfo {
     return [NSKeyedArchiver archiveRootObject:eInfo toFile:kArchivePath];
 }
 
 - (void)enableChangeEnvironment:(BOOL)enable withSelectIndex:(NSUInteger)selectIndex {
-    //default :NO :0
-    NSAssert(selectIndex<self.envs.count, @"环境配置列表越界");
-    if([GLEnvs loadEnv]==nil || enable==NO) {
+    NSAssert(selectIndex < self.envs.count, @"环境配置列表越界");
+    if ([GLEnvs loadEnv] == nil || enable == NO) {
         NSDictionary *envDic = self.envs[selectIndex];
         [GLEnvs saveEnv:envDic];
     }
-    if(enable==YES){
+    if (enable == YES) {
         SEL selor = @selector(motionEnded:withEvent:);
         Method m = class_getInstanceMethod([UIResponder class], selor);
-        VIM oimp = (VIM)method_getImplementation(m);
-        IMP nimp = imp_implementationWithBlock(^(id self ,UIEventSubtype motion, UIEvent *event){
-            if([event isKindOfClass:[UIEvent class]]){
+//        VIM oimp = (VIM)method_getImplementation(m);
+        IMP nimp = imp_implementationWithBlock(^(id self, UIEventSubtype motion, UIEvent *event) {
+            if ([event isKindOfClass:[UIEvent class]]) {
                 if (event.type == UIEventTypeMotion && motion == UIEventSubtypeMotionShake) {
                     GLEnvs *envs = [GLEnvs performSelector:NSSelectorFromString(@"defaultEnvs")];
                     [envs performSelector:NSSelectorFromString(@"showEnvChanger") withObject:nil afterDelay:0.0];
@@ -85,7 +84,7 @@ static GLEnvs *instance;
 }
 
 - (void)applicationDidBecomeActive {
-    if(inScreen==NO){
+    if (inScreen == NO) {
         [self showEnvInScreen];
     }
 }
@@ -93,9 +92,9 @@ static GLEnvs *instance;
 #pragma mark- 当前环境HUD
 - (void)showEnvInScreen {
     NSString *keystr = [GLEnvs loadEnvName];
-    if(keystr){
+    if (keystr) {
         NSMutableString *showStr = [NSMutableString string];
-        for(int i=0;i<20;i++){
+        for (int i = 0; i < 20; i++) {
             [showStr appendFormat:@"%@ ", keystr];
         }
         UILabel *tipLabel = [[UILabel alloc]initWithFrame:CGRectZero];
@@ -107,7 +106,7 @@ static GLEnvs *instance;
         tipLabel.backgroundColor = [UIColor colorWithRed:0 green:0 blue:1 alpha:.6];
         tipLabel.frame = CGRectInset(tipLabel.frame, 0, -5);
         tipLabel.textAlignment = NSTextAlignmentCenter;
-        if([UIApplication sharedApplication].keyWindow!=nil){
+        if ([UIApplication sharedApplication].keyWindow != nil) {
             [[UIApplication sharedApplication].keyWindow addSubview:tipLabel];
             inScreen = YES;
         }
@@ -117,25 +116,25 @@ static GLEnvs *instance;
 #pragma mark- 显示环境切换列表
 - (void)showEnvChanger {
     UIViewController *topVC = [UIApplication sharedApplication].keyWindow.rootViewController;
-    if(topVC.presentedViewController == nil){
+    if (topVC.presentedViewController == nil) {
         NSDictionary *info = [NSBundle mainBundle].infoDictionary;
         UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:[NSString stringWithFormat:@"<%@> 版本:%@ | Build:%@", info[@"CFBundleDisplayName"], info[@"CFBundleShortVersionString"], info[@"CFBundleVersion"]] message:kGLEnvsSelectorTipStr preferredStyle:UIAlertControllerStyleActionSheet];
-        for(int i=0;i<self.envs.count;i++) {
+        for (int i = 0; i < self.envs.count; i++) {
             NSDictionary *envDic = self.envs[i];
             NSString *eName = envDic.allKeys.firstObject;
-            UIAlertAction *alertAction = [UIAlertAction actionWithTitle:eName style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                if([GLEnvs saveEnv:envDic]){
+            UIAlertAction *alertAction = [UIAlertAction actionWithTitle:eName style:UIAlertActionStyleDefault handler:^(UIAlertAction *_Nonnull action) {
+                if ([GLEnvs saveEnv:envDic]) {
                     exit(1);
                 }
             }];
             alertAction.enabled = ![[GLEnvs loadEnvName] isEqualToString:eName];
             [actionSheet addAction:alertAction];
         }
-        UIAlertAction *alertAction = [UIAlertAction actionWithTitle:kGLEnvsCustomTitle style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        UIAlertAction *alertAction = [UIAlertAction actionWithTitle:kGLEnvsCustomTitle style:UIAlertActionStyleDefault handler:^(UIAlertAction *_Nonnull action) {
             GLEnvsCustomController *controller = [GLEnvsCustomController new];
             controller.data = [[GLEnvs loadEnv] mutableCopy];
-            controller.saveHandle = ^(NSDictionary * _Nonnull newdata) {
-                if([GLEnvs saveEnv:@{kGLEnvsCustomTitle:newdata}]){
+            controller.saveHandle = ^(NSDictionary *_Nonnull newdata) {
+                if ([GLEnvs saveEnv:@{ kGLEnvsCustomTitle: newdata }]) {
                     exit(1);
                 }
             };
