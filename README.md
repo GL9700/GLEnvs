@@ -22,14 +22,14 @@ pod 'GLEnvs'
 	...
 		GLEnvs *envs = [GLEnvs defaultWithEnvironments:@[
 		    @{@"测试环境":@{
-	              @"host":@"http://192.168.1.1:8082",
-	              @"nimKey":@"qwert",
-	              @"wxKey":@"12345"
+			@"host":@"http://192.168.1.1:8082",
+	                @"nimKey":@"qwert",
+	                @"wxKey":@"12345"
 		    }},
 		    @{@"正式环境":@{
-		              @"host":@"https://www.baidu.com",
-		              @"nimKey":@"Q23FDSTU5JIWEOEWL5324",
-		              @"wxKey":@"TUIOP5KL435UIO643JL"
+		        @"host":@"https://www.baidu.com",
+		        @"nimKey":@"Q23FDSTU5JIWEOEWL5324",
+		        @"wxKey":@"TUIOP5KL435UIO643JL"
 		    }}
 		]];
 		[envs enableChangeEnvironment:<#开启环境切换#> withSelectIndex:<#环境的索引编号#>];
