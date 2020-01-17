@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'GLEnvs'
-  s.version          = '1.2.5'
+  s.version          = '1.2.7'
   s.summary          = 'GLEnvs By liguoliang'
 
 # This description is used to generate tags and improve search results.
@@ -18,25 +18,7 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-    * 1.2.5
-        维护:增加了更加明确和更加详细的注释。
-    * 1.2.4
-        迁移:Github
-    * 1.2.3
-        修复:方法交换问题
-        增加:版本号显示
-    * 1.2.2
-        修复:修复一个崩溃Bug，对event做类型验证然后再进行后续操作
-    * 1.2.1
-        优化:当前环境显示问题，从小方块修改成全屏条幅
-    * 1.2.0
-        修复:一系列在真机导致崩溃的问题
-    * 1.1.2
-        fix Environment Save FAILED & Improve Save/Load to Archive
-    * 1.0.1
-        fix return Type
-    * 1.0.0
-        added custom
+  #warning:由于采用注入的方式，未使用交换方法，所以可能与系统的摇一摇冲突
     DESC
 
   s.homepage         = 'https://github.com/GL9700/GLEnvs'
