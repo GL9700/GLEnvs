@@ -8,18 +8,11 @@
 
 Pod::Spec.new do |s|
   s.name             = 'GLEnvs'
-  s.version          = '1.2.7'
+  s.version          = '1.2.8'
   s.summary          = 'GLEnvs By liguoliang'
-
-# This description is used to generate tags and improve search results.
-#   * Think: What does it do? Why did you write it? What is the focus?
-#   * Try to keep it short, snappy and to the point.
-#   * Write the description between the DESC delimiters below.
-#   * Finally, don't worry about the indent, CocoaPods strips it!
-
   s.description      = <<-DESC
-  #warning:由于采用注入的方式，未使用交换方法，所以可能与系统的摇一摇冲突
-    DESC
+  
+  DESC
 
   s.homepage         = 'https://github.com/GL9700/GLEnvs'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'

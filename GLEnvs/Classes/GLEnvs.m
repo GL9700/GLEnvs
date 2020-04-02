@@ -57,11 +57,27 @@ static GLEnvs *instance;
 
 - (void)enableChangeEnvironment:(BOOL)enable withSelectIndex:(NSUInteger)selectIndex {
     NSAssert(selectIndex < self.envs.count, @"环境配置列表越界");
-    if ([GLEnvs loadEnv] == nil || enable == NO) {
-        NSDictionary *envDic = self.envs[selectIndex];
+    NSString *currentEnvName = [GLEnvs loadEnvName];
+    NSDictionary *currentEnv = [GLEnvs loadEnv];
+    NSDictionary *newEnv = nil;
+    NSDictionary *envDic = self.envs[selectIndex];
+    // 未找到环境(写入新环境)
+    if(currentEnv == nil){
         [GLEnvs saveEnv:envDic];
     }
-    if (enable == YES) {
+    // 不允许修改环境(始终使用最新环境)
+    if (enable == NO) {
+        [GLEnvs saveEnv:envDic];
+    }else{
+        for (NSDictionary *tempEnv in self.envs) {
+            if([tempEnv.allKeys.firstObject isEqualToString:currentEnvName]){
+                newEnv = tempEnv[currentEnvName];
+            }
+        }
+        // 环境不同(重写保存环境，并使用最新))
+        if(newEnv && ![newEnv isEqualToDictionary:currentEnv]){
+            [GLEnvs saveEnv:envDic];
+        }
         SEL selor = @selector(motionEnded:withEvent:);
         Method m = class_getInstanceMethod([UIResponder class], selor);
 //        VIM oimp = (VIM)method_getImplementation(m);

@@ -21,21 +21,25 @@ pod 'GLEnvs'
 	```objc
 	...
 		GLEnvs *envs = [GLEnvs defaultWithEnvironments:@[
-		    @{@"测试环境":@{
-			@"host":@"http://192.168.1.1:8082",
-	                @"nimKey":@"qwert",
-	                @"wxKey":@"12345"
-		    }},
-		    @{@"正式环境":@{
-		        @"host":@"https://www.baidu.com",
-		        @"nimKey":@"Q23FDSTU5JIWEOEWL5324",
-		        @"wxKey":@"TUIOP5KL435UIO643JL"
-		    }}
+            @{
+                @"测试环境":@{
+                    @"host":@"http://192.168.1.1:8080",
+                    @"nimKey":@"debugkey333",
+                    @"wxKey":@"debugkey123"
+                }  
+            },@{
+                @"正式环境":@{
+                    @"host":@"https://www.baidu.com",
+                    @"nimKey":@"releasekey111",
+                    @"wxKey":@"releasekey222"
+                }
+            }
 		]];
 		[envs enableChangeEnvironment:<#开启环境切换#> withSelectIndex:<#环境的索引编号#>];
 
-		// 例如
-		// [envs enableChangeEnvironment:YES withSelectIndex:0];	// 是否开启环境切换 默认使用环境的索引编号
+        // 例如
+        // [envs enableChangeEnvironment:YES withSelectIndex:0];   // 使用者可以切换环境，使用 envs[0] 作为当前环境 
+        // [envs enableChangeEnvironment:NO withSelectIndex:1];    // 使用者无法切换环境，使用 envs[1] 作为当前环境
 		
 	...
 	```
@@ -54,23 +58,25 @@ None
 None
 
 ## History
+* 1.2.8 - 2020-04-02
+    * 修复一个在Debug状态下重修改环境字典未重新加载的问题（正式环境不受影响）
 * 1.2.5
-	维护:增加了更加明确和更加详细的注释。
+    * 维护:增加了更加明确和更加详细的注释。
 * 1.2.4
-	迁移:Github
+    * 迁移:Github
 * 1.2.3
-	修复:方法交换问题
-	增加:版本号显示
+    * 修复:方法交换问题
+    * 增加:版本号显示
 * 1.2.2
-	修复:修复一个崩溃Bug，对event做类型验证然后再进行后续操作
+    * 修复:修复一个崩溃Bug，对event做类型验证然后再进行后续操作
 * 1.2.1
-	优化:当前环境显示问题，从小方块修改成全屏条幅
+    * 优化:当前环境显示问题，从小方块修改成全屏条幅
 * 1.2.0
-	修复:一系列在真机导致崩溃的问题
+    * 修复:一系列在真机导致崩溃的问题
 * 1.1.2
-	fix Environment Save FAILED & Improve Save/Load to Archive
+    * fix Environment Save FAILED & Improve Save/Load to Archive
 * 1.0.0
-	first commit
+    * first commit
 
 ## Author
 liguoliang, 36617161@qq.com

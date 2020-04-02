@@ -14,11 +14,34 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions{
     NSLog(@"%@", NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES));
     
-    [[GLEnvs defaultWithEnvironments:@[@{@"开发环境":@{@"host":@"Development Environment", @"appkey":@"000000"}},
-                                       @{@"测试环境":@{@"host":@"Test Environment", @"appkey":@"1111111"}},
-                                       @{@"仿真环境":@{@"host":@"Emulate Environment", @"appkey":@"2222222"}},
-                                       @{@"线上环境":@{@"host":@"Release Environment", @"appkey":@"3333333"}}
-                                       ]] enableChangeEnvironment:YES withSelectIndex:0];
+    GLEnvs *env = [GLEnvs defaultWithEnvironments:@[
+                   @{
+                       @"开发环境":@{
+                             @"host":@"Development Environment",
+                             @"appkey":@"010222",
+                             @"webhost":@"http://192.168.1.4",
+                       }
+                   },@{
+                       @"测试环境":@{
+                             @"host":@"Test Environment",
+                             @"webhost":@"http://192.168.1.6",
+                             @"appkey":@"1111111"
+                         }
+                   },@{
+                       @"仿真环境":@{
+                             @"host":@"Emulate Environment",
+                             @"webhost":@"http://192.168.1.3",
+                             @"appkey":@"2222222"
+                         }
+                   },@{
+                       @"线上环境":@{
+                             @"host":@"Release Environment",
+                             @"webhost":@"http://192.168.1.4",
+                             @"appkey":@"3333333"
+                       }
+                   }
+    ]];
+    [env enableChangeEnvironment:YES withSelectIndex:0];
     return YES;
 }
 @end
