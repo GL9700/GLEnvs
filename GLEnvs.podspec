@@ -11,7 +11,8 @@ Pod::Spec.new do |s|
   s.version          = '1.2.8'
   s.summary          = 'GLEnvs By liguoliang'
   s.description      = <<-DESC
-  
+    GLEnvs can change app host environment , very easy !!!
+    by liguoliang 36617161@qq.com
   DESC
 
   s.homepage         = 'https://github.com/GL9700/GLEnvs'
