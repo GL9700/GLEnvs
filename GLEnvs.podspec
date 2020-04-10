@@ -8,10 +8,11 @@
 
 Pod::Spec.new do |s|
   s.name             = 'GLEnvs'
-  s.version          = '1.2.8'
-  s.summary          = 'GLEnvs By liguoliang'
+  s.version          = '1.2.9'
+  s.summary          = 'GLEnv 可以进行app环境快速切换，可以在app中摇一摇'
   s.description      = <<-DESC
-    GLEnvs can change app host environment , very easy !!!
+    GLEnvs 可以快速进行app的环境切换
+      采用摇一摇策略进行环境选择
     by liguoliang 36617161@qq.com
   DESC
 
