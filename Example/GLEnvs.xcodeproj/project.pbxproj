@@ -16,14 +16,14 @@
 		6003F5A9195388D20070C39A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5A8195388D20070C39A /* Images.xcassets */; };
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
-		93DFEDECF897C1BC2C5DD3AB /* Pods_GLEnvs_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26C7B3A46A4AD62BE91CF506 /* Pods_GLEnvs_Example.framework */; };
+		ADA9EB885E18697DBF8B6BCB /* libPods-GLEnvs_Example.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 58AB9E285B643A47F245866A /* libPods-GLEnvs_Example.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		26C7B3A46A4AD62BE91CF506 /* Pods_GLEnvs_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GLEnvs_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E61F800A4B0C3F00F3C10DE /* GLEnvs.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = GLEnvs.podspec; path = ../GLEnvs.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		3961BBCC8E951C19E0754916 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		49E83FF2897A11DE9E2060CB /* Pods_GLEnvs_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GLEnvs_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		58AB9E285B643A47F245866A /* libPods-GLEnvs_Example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GLEnvs_Example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58A195388D20070C39A /* GLEnvs_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GLEnvs_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6003F58F195388D20070C39A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -54,7 +54,7 @@
 			files = (
 				6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */,
 				6003F58E195388D20070C39A /* Foundation.framework in Frameworks */,
-				93DFEDECF897C1BC2C5DD3AB /* Pods_GLEnvs_Example.framework in Frameworks */,
+				ADA9EB885E18697DBF8B6BCB /* libPods-GLEnvs_Example.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,8 +98,8 @@
 				6003F58F195388D20070C39A /* CoreGraphics.framework */,
 				6003F591195388D20070C39A /* UIKit.framework */,
 				6003F5AF195388D20070C39A /* XCTest.framework */,
-				26C7B3A46A4AD62BE91CF506 /* Pods_GLEnvs_Example.framework */,
 				49E83FF2897A11DE9E2060CB /* Pods_GLEnvs_Tests.framework */,
+				58AB9E285B643A47F245866A /* libPods-GLEnvs_Example.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -152,7 +152,6 @@
 				6003F586195388D20070C39A /* Sources */,
 				6003F587195388D20070C39A /* Frameworks */,
 				6003F588195388D20070C39A /* Resources */,
-				CB19E3908AD6D956F1A489A3 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -213,24 +212,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		CB19E3908AD6D956F1A489A3 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-GLEnvs_Example/Pods-GLEnvs_Example-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/GLEnvs/GLEnvs.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GLEnvs.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GLEnvs_Example/Pods-GLEnvs_Example-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		DB729192B4AFC0C8273C0AB7 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

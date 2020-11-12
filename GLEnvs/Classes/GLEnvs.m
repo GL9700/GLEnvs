@@ -55,6 +55,26 @@ static GLEnvs *instance;
     return [NSKeyedArchiver archiveRootObject:eInfo toFile:kArchivePath];
 }
 
+- (void)enableWithMatchingPasteBoardString:(NSString *)string useIndex:(NSUInteger)match mismatchingIndex:(NSUInteger)mismatch {
+    NSString *pbcontent = UIPasteboard.generalPasteboard.string;
+    BOOL enable = NO;
+    switch (self.type) {
+        case MatchPrefix:
+            enable = [pbcontent hasPrefix:string];
+            break;
+        case MatchSuffix:
+            enable = [pbcontent hasSuffix:string];
+            break;
+        case MatchContain:
+            enable = [pbcontent containsString:string];
+            break;
+        default:
+            enable = [pbcontent isEqualToString:string];
+            break;
+    }
+    [self enableChangeEnvironment:enable withSelectIndex:enable ? match : mismatch];
+}
+
 - (void)enableChangeEnvironment:(BOOL)enable withSelectIndex:(NSUInteger)selectIndex {
     NSAssert(selectIndex < self.envs.count, @"环境配置列表越界");
     NSString *currentEnvName = [GLEnvs loadEnvName];

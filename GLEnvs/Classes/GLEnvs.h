@@ -19,7 +19,17 @@
  */
 #import <Foundation/Foundation.h>
 
+typedef enum : NSUInteger {
+    MatchAll,       // 完全匹配
+    MatchPrefix,    // 匹配开头
+    MatchSuffix,    // 匹配结尾
+    MatchContain    // 包含即可
+} MatchType;
+
 @interface GLEnvs : NSObject
+
+/// 匹配类型，默认完全匹配 (只在PasteBoard模式生效)
+@property (nonatomic) MatchType type;
 
 /**
  * @brief 初始化
@@ -34,6 +44,14 @@
  *
  */
 + (GLEnvs *)defaultWithEnvironments:(NSArray<NSDictionary *> *)envs;
+
+/**
+ * @brief 设置使用剪切板指定内容开启环境切换功能 并设置默认使用的环境索引
+ * @param string 指定剪切板内容
+ * @param match 如果匹配成功，使用的环境索引号(0~N)
+ * @param mismatch 如果匹配失败，使用的环境索引号(0~N)
+ */
+- (void)enableWithMatchingPasteBoardString:(NSString *)string useIndex:(NSUInteger)match mismatchingIndex:(NSUInteger)mismatch;
 
 /**
  * @brief 设置是否开启环境切换 并设置默认使用的环境索引

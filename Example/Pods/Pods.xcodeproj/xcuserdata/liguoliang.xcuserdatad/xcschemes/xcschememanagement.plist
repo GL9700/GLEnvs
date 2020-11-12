@@ -4,16 +4,18 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>GLEnvs.xcscheme_^#shared#^_</key>
+		<key>GLEnvs.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>1</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
-		<key>Pods-GLEnvs_Example.xcscheme_^#shared#^_</key>
+		<key>Pods-GLEnvs_Example.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>2</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict/>
 </dict>
 </plist>

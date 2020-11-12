@@ -8,8 +8,8 @@
 
 Pod::Spec.new do |s|
   s.name             = 'GLEnvs'
-  s.version          = '1.2.9'
-  s.summary          = 'GLEnv 可以进行app环境快速切换，可以在app中摇一摇'
+  s.version          = '1.3.0'
+  s.summary          = 'GLEnv 可以进行app环境快速切换，可以在app中摇一摇来进行环境选择，无需重新编译'
   s.description      = <<-DESC
     GLEnvs 可以快速进行app的环境切换
       采用摇一摇策略进行环境选择

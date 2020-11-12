@@ -41,7 +41,8 @@
                        }
                    }
     ]];
-    [env enableChangeEnvironment:YES withSelectIndex:0];
+//    [env enableChangeEnvironment:YES withSelectIndex:0];
+    [env enableWithMatchingPasteBoardString:@"#wdC1oud@Test#" useIndex:0 mismatchingIndex:3];
     return YES;
 }
 @end
