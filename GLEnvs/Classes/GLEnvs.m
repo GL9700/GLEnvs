@@ -21,16 +21,18 @@ typedef void (*VIM) (id, SEL, ...);
     BOOL inScreen;
 }
 @property (nonatomic, strong) NSArray *envs;
+@property (nonatomic) UIViewController *shortcutViewController;
 @end
 
 static GLEnvs *instance;
-
+NSString * const GLENV_SHORTCUT_TITLE = @"com.glenv.shortcut";
 @implementation GLEnvs
 
 + (GLEnvs *)defaultEnvs {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         instance = [[GLEnvs alloc]init];
+        [instance shortCutRemoveItemWithType:GLENV_SHORTCUT_TITLE];
     });
     return instance;
 }
@@ -55,7 +57,78 @@ static GLEnvs *instance;
     return [NSKeyedArchiver archiveRootObject:eInfo toFile:kArchivePath];
 }
 
-- (void)enableWithMatchingPasteBoardString:(NSString *)string useIndex:(NSUInteger)match mismatchingIndex:(NSUInteger)mismatch {
++ (void)manualChangeEnv:(NSUInteger)index {
+    if(index<[GLEnvs defaultEnvs].envs.count){
+        NSDictionary *envDic = [GLEnvs defaultEnvs].envs[index];
+        if ([GLEnvs saveEnv:envDic]) {
+            exit(1);
+        }
+    }
+}
+- (void)defaultEnvIndex:(NSUInteger)index {
+    NSAssert(index < self.envs.count, @"环境配置列表越界");
+    if([GLEnvs loadEnv] == nil){
+        [GLEnvs saveEnv:self.envs[index]];
+    }
+}
+- (void)shortCutAddItem:(UIApplicationShortcutItem *)item {
+    BOOL isFindItem = NO;
+    for (UIApplicationShortcutItem *itemp in [UIApplication sharedApplication].shortcutItems) {
+        if([itemp.type isEqualToString:item.type]){
+            isFindItem = YES;
+        }
+    }
+    if(isFindItem==NO){
+        NSArray *shortcutItems = [[UIApplication sharedApplication].shortcutItems arrayByAddingObject:item];
+        [UIApplication sharedApplication].shortcutItems = shortcutItems;
+    }
+}
+- (void)shortCutRemoveItemWithType:(NSString *)type {
+    int index = -1;
+    for (int i=0;i<[UIApplication sharedApplication].shortcutItems.count;i++) {
+        UIApplicationShortcutItem *itemp = [UIApplication sharedApplication].shortcutItems[i];
+        if([itemp.type isEqualToString:type]){
+            index = i;
+        }
+    }
+    if(index>=0) {
+        NSMutableArray *shortcutItems = [[UIApplication sharedApplication].shortcutItems mutableCopy];
+        [shortcutItems removeObjectAtIndex:index];
+        [UIApplication sharedApplication].shortcutItems = [shortcutItems copy];
+    }
+}
+- (void)enableWithShortCutItemString:(NSString *)title PresentConfig:(UIViewController<GLEnvsProtocol>*)configViewController defaultIndex:(NSUInteger)index{
+    [self defaultEnvIndex:index];
+    if(configViewController!=nil){
+        self.shortcutViewController = configViewController;
+        UIApplicationShortcutItem *item = [[UIApplicationShortcutItem alloc] initWithType:GLENV_SHORTCUT_TITLE localizedTitle:title];
+        [self shortCutAddItem:item];
+        
+        Method method1 = class_getInstanceMethod([UIApplication sharedApplication].delegate.class, @selector(application:performActionForShortcutItem:completionHandler:));
+        Method method2 = class_getInstanceMethod(self.class, @selector(_glenv_application:performActionForShortcutItem:completionHandler:));
+        if(method1 == NULL){
+            class_addMethod([UIApplication sharedApplication].delegate.class, @selector(application:performActionForShortcutItem:completionHandler:), method_getImplementation(method2), method_getTypeEncoding(method2));
+        }else{
+            method_exchangeImplementations(method1, method2);
+        }
+    }
+}
+- (void)_glenv_application:(UIApplication *)application performActionForShortcutItem:(UIApplicationShortcutItem *)shortcutItem completionHandler:(void (^)(BOOL))completionHandler {
+    if([self respondsToSelector:@selector(application:performActionForShortcutItem:completionHandler:)]){
+        if([shortcutItem.type isEqualToString:@"com.glenv.shortcut"]) {
+            if([GLEnvs defaultEnvs].shortcutViewController){
+                UIViewController *rootVC = [UIApplication sharedApplication].keyWindow.rootViewController;
+                while (rootVC.presentedViewController) {
+                    rootVC = rootVC.presentedViewController;
+                }
+                [rootVC presentViewController:[GLEnvs defaultEnvs].shortcutViewController animated:YES completion:nil];
+            }
+        }
+        [[GLEnvs defaultEnvs] _glenv_application:application performActionForShortcutItem:shortcutItem completionHandler:completionHandler];
+    }
+}
+
+- (void)enableWithPasteBoardString:(NSString *)string matchingIndex:(NSUInteger)match mismatchingIndex:(NSUInteger)mismatch {
     NSString *pbcontent = UIPasteboard.generalPasteboard.string;
     BOOL enable = NO;
     switch (self.type) {
@@ -72,10 +145,10 @@ static GLEnvs *instance;
             enable = [pbcontent isEqualToString:string];
             break;
     }
-    [self enableChangeEnvironment:enable withSelectIndex:enable ? match : mismatch];
+    [self enableWithShakeMotion:enable defaultIndex:enable ? match : mismatch];
 }
 
-- (void)enableChangeEnvironment:(BOOL)enable withSelectIndex:(NSUInteger)selectIndex {
+- (void)enableWithShakeMotion:(BOOL)enable defaultIndex:(NSUInteger)selectIndex {
     NSAssert(selectIndex < self.envs.count, @"环境配置列表越界");
     NSString *currentEnvName = [GLEnvs loadEnvName];
     NSDictionary *currentEnv = [GLEnvs loadEnv];
@@ -100,18 +173,12 @@ static GLEnvs *instance;
         }
         SEL selor = @selector(motionEnded:withEvent:);
         Method m = class_getInstanceMethod([UIResponder class], selor);
-//        VIM oimp = (VIM)method_getImplementation(m);
         IMP nimp = imp_implementationWithBlock(^(id self, UIEventSubtype motion, UIEvent *event) {
             if ([event isKindOfClass:[UIEvent class]]) {
                 if (event.type == UIEventTypeMotion && motion == UIEventSubtypeMotionShake) {
                     GLEnvs *envs = [GLEnvs performSelector:NSSelectorFromString(@"defaultEnvs")];
                     [envs performSelector:NSSelectorFromString(@"showEnvChanger") withObject:nil afterDelay:0.0];
                 }
-//                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//                    if([self isKindOfClass:[UIResponder class]] && [self respondsToSelector:selor]){
-//                        oimp(self, selor, motion, event);
-//                    }
-//                });
             }
         });
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidBecomeActive) name:UIApplicationDidBecomeActiveNotification object:nil];
@@ -151,37 +218,38 @@ static GLEnvs *instance;
 
 #pragma mark- 显示环境切换列表
 - (void)showEnvChanger {
-    UIViewController *topVC = [UIApplication sharedApplication].keyWindow.rootViewController;
-    if (topVC.presentedViewController == nil) {
-        NSDictionary *info = [NSBundle mainBundle].infoDictionary;
-        UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:[NSString stringWithFormat:@"<%@> 版本:%@ | Build:%@", info[@"CFBundleDisplayName"], info[@"CFBundleShortVersionString"], info[@"CFBundleVersion"]] message:kGLEnvsSelectorTipStr preferredStyle:UIAlertControllerStyleActionSheet];
-        for (int i = 0; i < self.envs.count; i++) {
-            NSDictionary *envDic = self.envs[i];
-            NSString *eName = envDic.allKeys.firstObject;
-            UIAlertAction *alertAction = [UIAlertAction actionWithTitle:eName style:UIAlertActionStyleDefault handler:^(UIAlertAction *_Nonnull action) {
-                if ([GLEnvs saveEnv:envDic]) {
-                    exit(1);
-                }
-            }];
-            alertAction.enabled = ![[GLEnvs loadEnvName] isEqualToString:eName];
-            [actionSheet addAction:alertAction];
-        }
-        UIAlertAction *alertAction = [UIAlertAction actionWithTitle:kGLEnvsCustomTitle style:UIAlertActionStyleDefault handler:^(UIAlertAction *_Nonnull action) {
-            GLEnvsCustomController *controller = [GLEnvsCustomController new];
-            controller.data = [[GLEnvs loadEnv] mutableCopy];
-            controller.saveHandle = ^(NSDictionary *_Nonnull newdata) {
-                if ([GLEnvs saveEnv:@{ kGLEnvsCustomTitle: newdata }]) {
-                    exit(1);
-                }
-            };
-            UINavigationController *envNav = [[UINavigationController alloc]initWithRootViewController:controller];
-            [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:envNav animated:YES completion:nil];
-        }];
-        alertAction.enabled = YES;
-        [actionSheet addAction:alertAction];
-        [actionSheet addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDestructive handler:nil]];
-        [topVC presentViewController:actionSheet animated:YES completion:nil];
+    UIViewController *rootVC = [UIApplication sharedApplication].keyWindow.rootViewController;
+    while (rootVC.presentedViewController) {
+        rootVC = rootVC.presentedViewController;
     }
+    NSDictionary *info = [NSBundle mainBundle].infoDictionary;
+    UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:[NSString stringWithFormat:@"<%@> 版本:%@ | Build:%@", info[@"CFBundleDisplayName"], info[@"CFBundleShortVersionString"], info[@"CFBundleVersion"]] message:kGLEnvsSelectorTipStr preferredStyle:UIAlertControllerStyleActionSheet];
+    for (int i = 0; i < self.envs.count; i++) {
+        NSDictionary *envDic = self.envs[i];
+        NSString *eName = envDic.allKeys.firstObject;
+        UIAlertAction *alertAction = [UIAlertAction actionWithTitle:eName style:UIAlertActionStyleDefault handler:^(UIAlertAction *_Nonnull action) {
+            if ([GLEnvs saveEnv:envDic]) {
+                exit(1);
+            }
+        }];
+        alertAction.enabled = ![[GLEnvs loadEnvName] isEqualToString:eName];
+        [actionSheet addAction:alertAction];
+    }
+    UIAlertAction *alertAction = [UIAlertAction actionWithTitle:kGLEnvsCustomTitle style:UIAlertActionStyleDefault handler:^(UIAlertAction *_Nonnull action) {
+        GLEnvsCustomController *controller = [GLEnvsCustomController new];
+        controller.data = [[GLEnvs loadEnv] mutableCopy];
+        controller.saveHandle = ^(NSDictionary *_Nonnull newdata) {
+            if ([GLEnvs saveEnv:@{ kGLEnvsCustomTitle: newdata }]) {
+                exit(1);
+            }
+        };
+        UINavigationController *envNav = [[UINavigationController alloc]initWithRootViewController:controller];
+        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:envNav animated:YES completion:nil];
+    }];
+    alertAction.enabled = YES;
+    [actionSheet addAction:alertAction];
+    [actionSheet addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDestructive handler:nil]];
+    [rootVC presentViewController:actionSheet animated:YES completion:nil];
 }
 
 @end

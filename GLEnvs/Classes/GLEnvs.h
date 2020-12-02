@@ -18,7 +18,9 @@
  * NSString *key = [GLEnvs loadEnv][@"Value"];
  */
 #import <Foundation/Foundation.h>
+#import <GLEnvsProtocol.h>
 
+/// 匹配模式 [完全 | 开头 | 包含 | 结尾]
 typedef enum : NSUInteger {
     MatchAll,       // 完全匹配
     MatchPrefix,    // 匹配开头
@@ -28,54 +30,69 @@ typedef enum : NSUInteger {
 
 @interface GLEnvs : NSObject
 
-/// 匹配类型，默认完全匹配 (只在PasteBoard模式生效)
+/// 匹配模式，默认完全匹配 (只在PasteBoard模式生效)
 @property (nonatomic) MatchType type;
 
-/**
- * @brief 初始化
- * @param envs 环境配置。
- * @return GLEnvs全局单例
- * @warning 使用时请参考 @see `+(NSDictionary *)loadEnv`
- * @discussion
- * 遵循"先设置，后使用"的规则。
- * @code
- * // 设置时
- * [GLEnvs defaultWithEnvironments:@[@"测试环境":@{@"Host":@"http://www.baidu.com", @"appkey":@"12345"}]];
- *
- */
+
+/// GLEnvs 全局单例
++ (GLEnvs *)defaultEnvs;
+
+/// GLEnvs 初始化
+/// @param envs 环境配置
+/// @return GLEnvs 全局单例
+/// @code
+/// // 设置时
+/// [GLEnvs defaultWithEnvironments:@[
+///         @"测试环境":
+///         @{
+///             @"Host":@"http://www.baidu.com",
+///             @"appkey":@"12345"
+///         },
+///         @"线上环境":
+///         @{
+///             @"Host":@"http://www.google.com",
+///             @"appkey":@"fabcde"
+///         }]
+///];
 + (GLEnvs *)defaultWithEnvironments:(NSArray<NSDictionary *> *)envs;
 
-/**
- * @brief 设置使用剪切板指定内容开启环境切换功能 并设置默认使用的环境索引
- * @param string 指定剪切板内容
- * @param match 如果匹配成功，使用的环境索引号(0~N)
- * @param mismatch 如果匹配失败，使用的环境索引号(0~N)
- */
-- (void)enableWithMatchingPasteBoardString:(NSString *)string useIndex:(NSUInteger)match mismatchingIndex:(NSUInteger)mismatch;
+/// 手动改变环境
+/// @param index 环境列表索引下标
++ (void)manualChangeEnv:(NSUInteger)index;
 
-/**
- * @brief 设置是否开启环境切换 并设置默认使用的环境索引
- * @param enable 是否开启环境切换
- * @param selectIndex 使用的环境索引号(0~N)
- */
-- (void)enableChangeEnvironment:(BOOL)enable withSelectIndex:(NSUInteger)selectIndex;
+/// 设置是否开启摇一摇环境切换(通过剪切板内容)
+/// @param string 指定剪切板内容(默认完全匹配)
+/// @param match 匹配成功，使用的环境索引下标
+/// @param mismatch 匹配失败，使用的环境索引下标
+/// @link 匹配类型详见 (MatchType)type
+- (void)enableWithPasteBoardString:(NSString *)string matchingIndex:(NSUInteger)match mismatchingIndex:(NSUInteger)mismatch;
 
-/**
- * @brief 获取当前的环境
- * @return 当前环境的Dictionary
- * @code
- * // 获取当前环境的Host值
- * [GLEnvs loadEnv][@"Host"]
- */
+/// 设置使用自定义图标菜单进行环境切换
+/// @param title 菜单显示内容(e.g. 可以是"扫一扫"等正常业务功能)
+/// @param configViewController 弹出页面呢(e.g. 扫描特定二维码，输入特定内容等)
+/// @param index 第一次(默认)使用的环境索引下标
+- (void)enableWithShortCutItemString:(NSString *)title PresentConfig:(UIViewController<GLEnvsProtocol>*)configViewController defaultIndex:(NSUInteger)index;
+
+/// 设置是否启用环境切换(通过摇一摇)
+/// @param enable 是否开启环境切换
+/// @param index 使用的环境索引下标
+- (void)enableWithShakeMotion:(BOOL)enable defaultIndex:(NSUInteger)index;
+
+/// 使用 -enableWithShakeMotion:defaultIndex:
+- (void)enableChangeEnvironment:(BOOL)enable withSelectIndex:(NSUInteger)selectIndex API_DEPRECATED("Use -enableWithShakeMotion:defaultIndex:",ios(2.0,2.0));
+
+/// 获取当前的环境
+/// @return 当前环境的Dictionary
+/// @code
+/// // 获取当前环境的Host值
+/// [GLEnvs loadEnv][@"Host"]
 + (NSDictionary *)loadEnv;
 
-/**
- * @brief 获取当前环境的名称
- * @return 当前环境的名称
- * @code
- * // 获取当前环境的名称
- * NSString *currentEnvName = [GLEnvs loadEnvname];
- */
+/// 获取当前环境的名称
+/// @return 当前环境的名称
+/// @code
+/// // 获取当前环境的名称
+/// NSString *currentEnvName = [GLEnvs loadEnvname];
 + (NSString *)loadEnvName;
 
 @end

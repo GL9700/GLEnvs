@@ -27,7 +27,7 @@
     [self presentViewController:ac animated:YES completion:nil];
 }
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    UIAlertController *ac = [UIAlertController alertControllerWithTitle:@"弹窗" message:@"测试GLEnv在有弹窗的情况下.\n结论:在已有弹窗情况下，无法弹出 GLEnvs 选择器" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *ac = [UIAlertController alertControllerWithTitle:@"弹窗" message:@"测试GLEnv在有弹窗的情况下.\n结论:在已有弹窗情况下，也可以弹出 GLEnvs 选择器" preferredStyle:UIAlertControllerStyleAlert];
     [ac addAction:[UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleCancel handler:nil]];
     [self presentViewController:ac animated:YES completion:nil];
 }

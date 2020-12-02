@@ -1,5 +1,5 @@
 PODS:
-  - GLEnvs (1.2.9)
+  - GLEnvs (1.3.0)
 
 DEPENDENCIES:
   - GLEnvs (from `../`)
@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  GLEnvs: 1f7a3ef80b30d05b7da1dfe65b31c7ca5d386d56
+  GLEnvs: 4fd942bde9e05913b6f266102aaee3c8ee2d7f38
 
 PODFILE CHECKSUM: 92e5a50b6eea44f631d419d10b90afd61360aebc
 

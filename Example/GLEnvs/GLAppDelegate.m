@@ -8,9 +8,12 @@
 
 #import "GLAppDelegate.h"
 #import <GLEnvs.h>
+#import "GLEnvChooseViewController.h"
 
 @implementation GLAppDelegate
-
+//- (void)application:(UIApplication *)application performActionForShortcutItem:(UIApplicationShortcutItem *)shortcutItem completionHandler:(void (^)(BOOL))completionHandler {
+//    NSLog(@"name:%@\ntype:%@", shortcutItem.localizedTitle, shortcutItem.type);
+//}
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions{
     NSLog(@"%@", NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES));
     
@@ -41,8 +44,12 @@
                        }
                    }
     ]];
-//    [env enableChangeEnvironment:YES withSelectIndex:0];
-    [env enableWithMatchingPasteBoardString:@"#wdC1oud@Test#" useIndex:0 mismatchingIndex:3];
+    NSString *str;
+    [str getCString:"aa"];
+    env enable
+//    [env enableWithShakeMotion:YES defaultIndex:3];
+//    [env enableWithPasteBoardString:@"#wdC1oud@Test#" matchingIndex:0 mismatchingIndex:3];
+//    [env enableWithShortCutItemString:@"切换环境" PresentConfig:[GLEnvChooseViewController new] defaultIndex:0];
     return YES;
 }
 @end

@@ -6,7 +6,7 @@
 [![License](https://img.shields.io/cocoapods/l/GLEnvs.svg?style=flat)](https://cocoapods.org/pods/GLEnvs)
 [![Platform](https://img.shields.io/cocoapods/p/GLEnvs.svg?style=flat)](https://cocoapods.org/pods/GLEnvs)
 
-在Debug环境中，使用摇一摇可以快速切换已配置好的网络环境，也可以直接自定义网络环境。
+可以快速切换已配置好的变量环境，也可以直接自定义变量环境。
 
 ## Installation
 
@@ -59,6 +59,8 @@ None
 None
 
 ## History
+* 1.4.0 - 2020-12-02
+    * 增加了可以通过ShortCut ( 3D Touch 主屏图标 ) 来进行环境切换，并且可以自定义内页，来隐藏Debug模式
 * 1.3.0 - 2020-11-12
     * 增加关于开启和关闭，现在可以通过获取剪切板内容来开启或关闭测试模式。可自定义匹配模式
 * 1.2.8 - 2020-04-02
