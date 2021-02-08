@@ -17,7 +17,7 @@
  * NSURL *url = [[GLEnvs loadEnv][@"HOST"] stringByAppendingPathComponent:@"xx/xx"];
  * NSString *key = [GLEnvs loadEnv][@"Value"];
  */
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import <GLEnvsProtocol.h>
 
 /// 匹配模式 [完全 | 开头 | 包含 | 结尾]
@@ -77,9 +77,6 @@ typedef enum : NSUInteger {
 /// @param enable 是否开启环境切换
 /// @param index 使用的环境索引下标
 - (void)enableWithShakeMotion:(BOOL)enable defaultIndex:(NSUInteger)index;
-
-/// 使用 -enableWithShakeMotion:defaultIndex:
-- (void)enableChangeEnvironment:(BOOL)enable withSelectIndex:(NSUInteger)selectIndex API_DEPRECATED("Use -enableWithShakeMotion:defaultIndex:",ios(2.0,2.0));
 
 /// 获取当前的环境
 /// @return 当前环境的Dictionary

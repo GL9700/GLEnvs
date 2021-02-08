@@ -1,0 +1,13 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+use_frameworks!
+
+abstract_target 'GLEnvs Demo' do
+  
+  pod 'GLEnvs', :path=>'../'
+  
+  target 'Demo_ObjC'
+  target 'Demo_Swift'
+  
+end

@@ -11,7 +11,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface GLEnvsCustomController : UITableViewController
 @property (nonatomic, strong) NSMutableDictionary *data;
-@property (nonatomic, strong) void (^ saveHandle)(NSDictionary *newdata);
+@property (nonatomic, strong) void (^handleSave)(NSDictionary *newdata);
 @end
 
 NS_ASSUME_NONNULL_END

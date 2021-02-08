@@ -1,0 +1,816 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		13EAC3EE4138233862FCDCB5EFCB4121 /* Pods-GLEnvs Demo-Demo_ObjC-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A20F26264FA62D347A7804C797F01EC6 /* Pods-GLEnvs Demo-Demo_ObjC-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		20B4FD17C6BE369EA382AAABD854A26F /* GLEnvs.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A35AE71687CD2E264228A24EBA54EB6 /* GLEnvs.m */; };
+		3E9C23456FC67C356DA59E1C50617941 /* Pods-GLEnvs Demo-Demo_ObjC-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BA673FD1D652A2D18644F10E08E0F9E /* Pods-GLEnvs Demo-Demo_ObjC-dummy.m */; };
+		668833DCA8844FFA5F0DC3712156BD9F /* GLEnvs.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EB343CCF4E03310A170382A9270BA11 /* GLEnvs.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		80F8779FB6F6F6E4A3904C65F528A65A /* GLEnvsProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 53C62D635760181AC5D121B92191F99E /* GLEnvsProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		89FD55892DAF9D6CEB26912206DA1508 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
+		A9D5B8B15C9B1BC5FA6FA838F2985CDB /* GLEnvs-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C2373B63CA82EFD2F11F0430A857EDEF /* GLEnvs-dummy.m */; };
+		ACECEA749DDF576AD98451CB0B554237 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
+		B087CA6A682B1E7F96611CCD362F77BE /* GLEnvsCustomController.h in Headers */ = {isa = PBXBuildFile; fileRef = E0AEB0472910C877799BA2555D6C31AA /* GLEnvsCustomController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BCC45ECA7C6E202B4F6DE669E60CFF09 /* Pods-GLEnvs Demo-Demo_Swift-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E90114D295F5C3422A23DA0A71CFC7B1 /* Pods-GLEnvs Demo-Demo_Swift-dummy.m */; };
+		BF5D9EFE0584E7BCE42EB94A07A080D7 /* Pods-GLEnvs Demo-Demo_Swift-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 8ACA1FBCF22EA713547B301595305B7C /* Pods-GLEnvs Demo-Demo_Swift-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D76B76CF1D5A8D810B66020169B48117 /* GLEnvs-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 21E909D7401E388ADBCF4555B3E76A8B /* GLEnvs-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DE8DC265D0289D0F16C3231CCA820BC3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
+		FFBE76805389565000044D9DFCB3D70F /* GLEnvsCustomController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFB5AD8B1C6AB59D007B0BA1D2C90FF0 /* GLEnvsCustomController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		05B33100187D471CB42ED71DEA0ABD38 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 59C3092CE812110AAA696ACFB4E8BA26;
+			remoteInfo = GLEnvs;
+		};
+		3B1134C89DB0F49349C3B90797F5D4F5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 59C3092CE812110AAA696ACFB4E8BA26;
+			remoteInfo = GLEnvs;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		041806A03527C9FF81CF08CB83970EBD /* GLEnvs.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = GLEnvs.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		1A78AE2B5125E35F38B2E37D328D9220 /* Pods-GLEnvs Demo-Demo_ObjC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GLEnvs Demo-Demo_ObjC.release.xcconfig"; sourceTree = "<group>"; };
+		1CD5B524E757269156F973FD1814672E /* GLEnvs.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = GLEnvs.modulemap; sourceTree = "<group>"; };
+		21E909D7401E388ADBCF4555B3E76A8B /* GLEnvs-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "GLEnvs-umbrella.h"; sourceTree = "<group>"; };
+		25BFC1A67116DC8B919EF1F340981ACB /* GLEnvs-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "GLEnvs-Info.plist"; sourceTree = "<group>"; };
+		283BE73CDE09BC90B26F994A00B9C11F /* Pods-GLEnvs Demo-Demo_Swift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GLEnvs Demo-Demo_Swift.release.xcconfig"; sourceTree = "<group>"; };
+		316BFF14CE4A5E616CFC552416DD10A6 /* Pods_GLEnvs_Demo_Demo_ObjC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_GLEnvs_Demo_Demo_ObjC.framework; path = "Pods-GLEnvs Demo-Demo_ObjC.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3EB343CCF4E03310A170382A9270BA11 /* GLEnvs.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GLEnvs.h; path = GLEnvs/Classes/GLEnvs.h; sourceTree = "<group>"; };
+		46621D30D53F0CD60F6A81A877A409B6 /* GLEnvs.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = GLEnvs.debug.xcconfig; sourceTree = "<group>"; };
+		53C62D635760181AC5D121B92191F99E /* GLEnvsProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GLEnvsProtocol.h; path = GLEnvs/Classes/GLEnvsProtocol.h; sourceTree = "<group>"; };
+		6A69AB2FA6FC68C8AF623A7B421AAD30 /* Pods-GLEnvs Demo-Demo_Swift-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-GLEnvs Demo-Demo_Swift-frameworks.sh"; sourceTree = "<group>"; };
+		73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		80791DA53613658CC45F5BD790531B50 /* GLEnvs.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = GLEnvs.release.xcconfig; sourceTree = "<group>"; };
+		83BE2DF310922D3E62795F348B9E185A /* Pods-GLEnvs Demo-Demo_Swift-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-GLEnvs Demo-Demo_Swift-Info.plist"; sourceTree = "<group>"; };
+		84BBF1CA11C4AF910BFB83D7C2A46138 /* GLEnvs.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = GLEnvs.framework; path = GLEnvs.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8ACA1FBCF22EA713547B301595305B7C /* Pods-GLEnvs Demo-Demo_Swift-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-GLEnvs Demo-Demo_Swift-umbrella.h"; sourceTree = "<group>"; };
+		920D6CC1EA08920DC87F021F9A6CE806 /* Pods-GLEnvs Demo-Demo_ObjC-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-GLEnvs Demo-Demo_ObjC-acknowledgements.markdown"; sourceTree = "<group>"; };
+		98057417A910384E2BDEDD82F3623BE6 /* Pods-GLEnvs Demo-Demo_Swift-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-GLEnvs Demo-Demo_Swift-acknowledgements.plist"; sourceTree = "<group>"; };
+		9A35AE71687CD2E264228A24EBA54EB6 /* GLEnvs.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = GLEnvs.m; path = GLEnvs/Classes/GLEnvs.m; sourceTree = "<group>"; };
+		9BA673FD1D652A2D18644F10E08E0F9E /* Pods-GLEnvs Demo-Demo_ObjC-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-GLEnvs Demo-Demo_ObjC-dummy.m"; sourceTree = "<group>"; };
+		9BEF277CECF9F32DB0CB10EDAEFEF5F2 /* Pods-GLEnvs Demo-Demo_Swift.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-GLEnvs Demo-Demo_Swift.modulemap"; sourceTree = "<group>"; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		A20F26264FA62D347A7804C797F01EC6 /* Pods-GLEnvs Demo-Demo_ObjC-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-GLEnvs Demo-Demo_ObjC-umbrella.h"; sourceTree = "<group>"; };
+		A72020D46F6C721AE26CA5B1341DE3F9 /* GLEnvs-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "GLEnvs-prefix.pch"; sourceTree = "<group>"; };
+		B52BE06BF432F0B808262285A73F46EE /* Pods-GLEnvs Demo-Demo_ObjC-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-GLEnvs Demo-Demo_ObjC-Info.plist"; sourceTree = "<group>"; };
+		B6239ACC698B6F6EEB2F31F1A931B5B0 /* Pods-GLEnvs Demo-Demo_ObjC-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-GLEnvs Demo-Demo_ObjC-frameworks.sh"; sourceTree = "<group>"; };
+		C2373B63CA82EFD2F11F0430A857EDEF /* GLEnvs-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "GLEnvs-dummy.m"; sourceTree = "<group>"; };
+		C6858AD8FBED5CE479A043E319EF3D64 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		C7A47D87F5B717EEA1E1A8AADB8D66E9 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		D6CFC41B8BCFF42BE647113CEE2A6CE3 /* Pods-GLEnvs Demo-Demo_Swift-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-GLEnvs Demo-Demo_Swift-acknowledgements.markdown"; sourceTree = "<group>"; };
+		D88D2ABECC07757E3D3C3238A24A9F50 /* Pods-GLEnvs Demo-Demo_ObjC.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GLEnvs Demo-Demo_ObjC.debug.xcconfig"; sourceTree = "<group>"; };
+		DA765BC1C37AF03130E74A80984526EB /* Pods-GLEnvs Demo-Demo_ObjC-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-GLEnvs Demo-Demo_ObjC-acknowledgements.plist"; sourceTree = "<group>"; };
+		DFB5AD8B1C6AB59D007B0BA1D2C90FF0 /* GLEnvsCustomController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = GLEnvsCustomController.m; path = GLEnvs/Classes/GLEnvsCustomController.m; sourceTree = "<group>"; };
+		E0AEB0472910C877799BA2555D6C31AA /* GLEnvsCustomController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GLEnvsCustomController.h; path = GLEnvs/Classes/GLEnvsCustomController.h; sourceTree = "<group>"; };
+		E4B023AF83BFA5E44CFF706EDFD99E06 /* Pods-GLEnvs Demo-Demo_ObjC.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-GLEnvs Demo-Demo_ObjC.modulemap"; sourceTree = "<group>"; };
+		E90114D295F5C3422A23DA0A71CFC7B1 /* Pods-GLEnvs Demo-Demo_Swift-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-GLEnvs Demo-Demo_Swift-dummy.m"; sourceTree = "<group>"; };
+		ECF31E4E33098D175183F4D0C7801BCA /* Pods-GLEnvs Demo-Demo_Swift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GLEnvs Demo-Demo_Swift.debug.xcconfig"; sourceTree = "<group>"; };
+		EDBF458FCAA35B561D209DB36BA52461 /* Pods_GLEnvs_Demo_Demo_Swift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_GLEnvs_Demo_Demo_Swift.framework; path = "Pods-GLEnvs Demo-Demo_Swift.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		19078A7EAC641D50352D40C19995ED95 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ACECEA749DDF576AD98451CB0B554237 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3F99B07F0FFCF6ECAF7E8B0088AF5771 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				89FD55892DAF9D6CEB26912206DA1508 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E03986A33EE1F010BB46B267D6D726E1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DE8DC265D0289D0F16C3231CCA820BC3 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		11BDFC0111542767E199132E044724F7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				84BBF1CA11C4AF910BFB83D7C2A46138 /* GLEnvs.framework */,
+				316BFF14CE4A5E616CFC552416DD10A6 /* Pods_GLEnvs_Demo_Demo_ObjC.framework */,
+				EDBF458FCAA35B561D209DB36BA52461 /* Pods_GLEnvs_Demo_Demo_Swift.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		139D7A8687A72575B84F7C06141FE5F7 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				1CD5B524E757269156F973FD1814672E /* GLEnvs.modulemap */,
+				C2373B63CA82EFD2F11F0430A857EDEF /* GLEnvs-dummy.m */,
+				25BFC1A67116DC8B919EF1F340981ACB /* GLEnvs-Info.plist */,
+				A72020D46F6C721AE26CA5B1341DE3F9 /* GLEnvs-prefix.pch */,
+				21E909D7401E388ADBCF4555B3E76A8B /* GLEnvs-umbrella.h */,
+				46621D30D53F0CD60F6A81A877A409B6 /* GLEnvs.debug.xcconfig */,
+				80791DA53613658CC45F5BD790531B50 /* GLEnvs.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "Demo/Pods/Target Support Files/GLEnvs";
+			sourceTree = "<group>";
+		};
+		1F13B1587C0BA17C150BE8865F555E39 /* GLEnvs */ = {
+			isa = PBXGroup;
+			children = (
+				3EB343CCF4E03310A170382A9270BA11 /* GLEnvs.h */,
+				9A35AE71687CD2E264228A24EBA54EB6 /* GLEnvs.m */,
+				E0AEB0472910C877799BA2555D6C31AA /* GLEnvsCustomController.h */,
+				DFB5AD8B1C6AB59D007B0BA1D2C90FF0 /* GLEnvsCustomController.m */,
+				53C62D635760181AC5D121B92191F99E /* GLEnvsProtocol.h */,
+				D70AE089353611A2A485B45D789096F4 /* Pod */,
+				139D7A8687A72575B84F7C06141FE5F7 /* Support Files */,
+			);
+			name = GLEnvs;
+			path = ../..;
+			sourceTree = "<group>";
+		};
+		578452D2E740E91742655AC8F1636D1F /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		6DBEF290DA5AD72408E8892A474C1F06 /* Development Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1F13B1587C0BA17C150BE8865F555E39 /* GLEnvs */,
+			);
+			name = "Development Pods";
+			sourceTree = "<group>";
+		};
+		81E8B97D8CBD1AD4D34BDEACB70D7C1D /* Pods-GLEnvs Demo-Demo_Swift */ = {
+			isa = PBXGroup;
+			children = (
+				9BEF277CECF9F32DB0CB10EDAEFEF5F2 /* Pods-GLEnvs Demo-Demo_Swift.modulemap */,
+				D6CFC41B8BCFF42BE647113CEE2A6CE3 /* Pods-GLEnvs Demo-Demo_Swift-acknowledgements.markdown */,
+				98057417A910384E2BDEDD82F3623BE6 /* Pods-GLEnvs Demo-Demo_Swift-acknowledgements.plist */,
+				E90114D295F5C3422A23DA0A71CFC7B1 /* Pods-GLEnvs Demo-Demo_Swift-dummy.m */,
+				6A69AB2FA6FC68C8AF623A7B421AAD30 /* Pods-GLEnvs Demo-Demo_Swift-frameworks.sh */,
+				83BE2DF310922D3E62795F348B9E185A /* Pods-GLEnvs Demo-Demo_Swift-Info.plist */,
+				8ACA1FBCF22EA713547B301595305B7C /* Pods-GLEnvs Demo-Demo_Swift-umbrella.h */,
+				ECF31E4E33098D175183F4D0C7801BCA /* Pods-GLEnvs Demo-Demo_Swift.debug.xcconfig */,
+				283BE73CDE09BC90B26F994A00B9C11F /* Pods-GLEnvs Demo-Demo_Swift.release.xcconfig */,
+			);
+			name = "Pods-GLEnvs Demo-Demo_Swift";
+			path = "Target Support Files/Pods-GLEnvs Demo-Demo_Swift";
+			sourceTree = "<group>";
+		};
+		8DF9A18B77F1D1EE63B12CA1FAF0DD92 /* Pods-GLEnvs Demo-Demo_ObjC */ = {
+			isa = PBXGroup;
+			children = (
+				E4B023AF83BFA5E44CFF706EDFD99E06 /* Pods-GLEnvs Demo-Demo_ObjC.modulemap */,
+				920D6CC1EA08920DC87F021F9A6CE806 /* Pods-GLEnvs Demo-Demo_ObjC-acknowledgements.markdown */,
+				DA765BC1C37AF03130E74A80984526EB /* Pods-GLEnvs Demo-Demo_ObjC-acknowledgements.plist */,
+				9BA673FD1D652A2D18644F10E08E0F9E /* Pods-GLEnvs Demo-Demo_ObjC-dummy.m */,
+				B6239ACC698B6F6EEB2F31F1A931B5B0 /* Pods-GLEnvs Demo-Demo_ObjC-frameworks.sh */,
+				B52BE06BF432F0B808262285A73F46EE /* Pods-GLEnvs Demo-Demo_ObjC-Info.plist */,
+				A20F26264FA62D347A7804C797F01EC6 /* Pods-GLEnvs Demo-Demo_ObjC-umbrella.h */,
+				D88D2ABECC07757E3D3C3238A24A9F50 /* Pods-GLEnvs Demo-Demo_ObjC.debug.xcconfig */,
+				1A78AE2B5125E35F38B2E37D328D9220 /* Pods-GLEnvs Demo-Demo_ObjC.release.xcconfig */,
+			);
+			name = "Pods-GLEnvs Demo-Demo_ObjC";
+			path = "Target Support Files/Pods-GLEnvs Demo-Demo_ObjC";
+			sourceTree = "<group>";
+		};
+		CF1408CF629C7361332E53B88F7BD30C = {
+			isa = PBXGroup;
+			children = (
+				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
+				6DBEF290DA5AD72408E8892A474C1F06 /* Development Pods */,
+				D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */,
+				11BDFC0111542767E199132E044724F7 /* Products */,
+				E63EC0E66E3EFBDC545744669A9EA654 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				578452D2E740E91742655AC8F1636D1F /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D70AE089353611A2A485B45D789096F4 /* Pod */ = {
+			isa = PBXGroup;
+			children = (
+				041806A03527C9FF81CF08CB83970EBD /* GLEnvs.podspec */,
+				C6858AD8FBED5CE479A043E319EF3D64 /* LICENSE */,
+				C7A47D87F5B717EEA1E1A8AADB8D66E9 /* README.md */,
+			);
+			name = Pod;
+			sourceTree = "<group>";
+		};
+		E63EC0E66E3EFBDC545744669A9EA654 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				8DF9A18B77F1D1EE63B12CA1FAF0DD92 /* Pods-GLEnvs Demo-Demo_ObjC */,
+				81E8B97D8CBD1AD4D34BDEACB70D7C1D /* Pods-GLEnvs Demo-Demo_Swift */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		2264AC954B5CE87C93294F5208CF24F0 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				13EAC3EE4138233862FCDCB5EFCB4121 /* Pods-GLEnvs Demo-Demo_ObjC-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CDA95A3C201E29A29A66798A58B95244 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D76B76CF1D5A8D810B66020169B48117 /* GLEnvs-umbrella.h in Headers */,
+				668833DCA8844FFA5F0DC3712156BD9F /* GLEnvs.h in Headers */,
+				B087CA6A682B1E7F96611CCD362F77BE /* GLEnvsCustomController.h in Headers */,
+				80F8779FB6F6F6E4A3904C65F528A65A /* GLEnvsProtocol.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FBC43EF4E27BC5A6C9A288FE86A82520 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BF5D9EFE0584E7BCE42EB94A07A080D7 /* Pods-GLEnvs Demo-Demo_Swift-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		59C3092CE812110AAA696ACFB4E8BA26 /* GLEnvs */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 28771B28B90F71E7ED0B59584DB8FEC7 /* Build configuration list for PBXNativeTarget "GLEnvs" */;
+			buildPhases = (
+				CDA95A3C201E29A29A66798A58B95244 /* Headers */,
+				25690038005C7134AF2DA9A2C7EEEA9F /* Sources */,
+				3F99B07F0FFCF6ECAF7E8B0088AF5771 /* Frameworks */,
+				E092B78867D045E13B6C29A4142E5E93 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GLEnvs;
+			productName = GLEnvs;
+			productReference = 84BBF1CA11C4AF910BFB83D7C2A46138 /* GLEnvs.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		970987E5BD9718AEA6924459A0875542 /* Pods-GLEnvs Demo-Demo_Swift */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AB58C563741683F62F9A623B999B406B /* Build configuration list for PBXNativeTarget "Pods-GLEnvs Demo-Demo_Swift" */;
+			buildPhases = (
+				FBC43EF4E27BC5A6C9A288FE86A82520 /* Headers */,
+				5DD00D96206EB947266F0DC593B6E80B /* Sources */,
+				E03986A33EE1F010BB46B267D6D726E1 /* Frameworks */,
+				7D48281917B93B5D4661316BD3490615 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6BB8F31B56B67DB1074A23ACFC6FEAA4 /* PBXTargetDependency */,
+			);
+			name = "Pods-GLEnvs Demo-Demo_Swift";
+			productName = "Pods-GLEnvs Demo-Demo_Swift";
+			productReference = EDBF458FCAA35B561D209DB36BA52461 /* Pods_GLEnvs_Demo_Demo_Swift.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		E8B1CC98832D2E3E887E669EB3BACEFA /* Pods-GLEnvs Demo-Demo_ObjC */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9AD511C142D397A80151FAF67D19E24C /* Build configuration list for PBXNativeTarget "Pods-GLEnvs Demo-Demo_ObjC" */;
+			buildPhases = (
+				2264AC954B5CE87C93294F5208CF24F0 /* Headers */,
+				0A20E3C93751FC9495A765876CDFD342 /* Sources */,
+				19078A7EAC641D50352D40C19995ED95 /* Frameworks */,
+				F196E049B755EDE254EEA72FB59D49D2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				69B40C691861BC5C09AC664F7AC1854A /* PBXTargetDependency */,
+			);
+			name = "Pods-GLEnvs Demo-Demo_ObjC";
+			productName = "Pods-GLEnvs Demo-Demo_ObjC";
+			productReference = 316BFF14CE4A5E616CFC552416DD10A6 /* Pods_GLEnvs_Demo_Demo_ObjC.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BFDFE7DC352907FC980B868725387E98 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1100;
+				LastUpgradeCheck = 1100;
+			};
+			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 10.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
+			productRefGroup = 11BDFC0111542767E199132E044724F7 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				59C3092CE812110AAA696ACFB4E8BA26 /* GLEnvs */,
+				E8B1CC98832D2E3E887E669EB3BACEFA /* Pods-GLEnvs Demo-Demo_ObjC */,
+				970987E5BD9718AEA6924459A0875542 /* Pods-GLEnvs Demo-Demo_Swift */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		7D48281917B93B5D4661316BD3490615 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E092B78867D045E13B6C29A4142E5E93 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F196E049B755EDE254EEA72FB59D49D2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0A20E3C93751FC9495A765876CDFD342 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3E9C23456FC67C356DA59E1C50617941 /* Pods-GLEnvs Demo-Demo_ObjC-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		25690038005C7134AF2DA9A2C7EEEA9F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A9D5B8B15C9B1BC5FA6FA838F2985CDB /* GLEnvs-dummy.m in Sources */,
+				20B4FD17C6BE369EA382AAABD854A26F /* GLEnvs.m in Sources */,
+				FFBE76805389565000044D9DFCB3D70F /* GLEnvsCustomController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5DD00D96206EB947266F0DC593B6E80B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BCC45ECA7C6E202B4F6DE669E60CFF09 /* Pods-GLEnvs Demo-Demo_Swift-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		69B40C691861BC5C09AC664F7AC1854A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = GLEnvs;
+			target = 59C3092CE812110AAA696ACFB4E8BA26 /* GLEnvs */;
+			targetProxy = 05B33100187D471CB42ED71DEA0ABD38 /* PBXContainerItemProxy */;
+		};
+		6BB8F31B56B67DB1074A23ACFC6FEAA4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = GLEnvs;
+			target = 59C3092CE812110AAA696ACFB4E8BA26 /* GLEnvs */;
+			targetProxy = 3B1134C89DB0F49349C3B90797F5D4F5 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		066D0B2AE6019493CF0358A6BF2E94B6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 46621D30D53F0CD60F6A81A877A409B6 /* GLEnvs.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/GLEnvs/GLEnvs-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/GLEnvs/GLEnvs-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/GLEnvs/GLEnvs.modulemap";
+				PRODUCT_MODULE_NAME = GLEnvs;
+				PRODUCT_NAME = GLEnvs;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		4082AC5EA044C26A15283A62C4A884C9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 283BE73CDE09BC90B26F994A00B9C11F /* Pods-GLEnvs Demo-Demo_Swift.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-GLEnvs Demo-Demo_Swift/Pods-GLEnvs Demo-Demo_Swift-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-GLEnvs Demo-Demo_Swift/Pods-GLEnvs Demo-Demo_Swift.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		5E98659B533E36778D782130D63A5DC7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 80791DA53613658CC45F5BD790531B50 /* GLEnvs.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/GLEnvs/GLEnvs-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/GLEnvs/GLEnvs-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/GLEnvs/GLEnvs.modulemap";
+				PRODUCT_MODULE_NAME = GLEnvs;
+				PRODUCT_NAME = GLEnvs;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		707A101BF3FAE07C00C58F23B0BBBAF9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = ECF31E4E33098D175183F4D0C7801BCA /* Pods-GLEnvs Demo-Demo_Swift.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-GLEnvs Demo-Demo_Swift/Pods-GLEnvs Demo-Demo_Swift-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-GLEnvs Demo-Demo_Swift/Pods-GLEnvs Demo-Demo_Swift.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		71243899B61152433AAE34EE86456EE7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Release;
+		};
+		75D70EEEA0A456E14F7338A7F342964E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		94B6AC4D8B021575266F4995D4BB221D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1A78AE2B5125E35F38B2E37D328D9220 /* Pods-GLEnvs Demo-Demo_ObjC.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-GLEnvs Demo-Demo_ObjC/Pods-GLEnvs Demo-Demo_ObjC-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-GLEnvs Demo-Demo_ObjC/Pods-GLEnvs Demo-Demo_ObjC.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		B120B42FB77CF366824DA4F9E79AF4F1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D88D2ABECC07757E3D3C3238A24A9F50 /* Pods-GLEnvs Demo-Demo_ObjC.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-GLEnvs Demo-Demo_ObjC/Pods-GLEnvs Demo-Demo_ObjC-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-GLEnvs Demo-Demo_ObjC/Pods-GLEnvs Demo-Demo_ObjC.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		28771B28B90F71E7ED0B59584DB8FEC7 /* Build configuration list for PBXNativeTarget "GLEnvs" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				066D0B2AE6019493CF0358A6BF2E94B6 /* Debug */,
+				5E98659B533E36778D782130D63A5DC7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				75D70EEEA0A456E14F7338A7F342964E /* Debug */,
+				71243899B61152433AAE34EE86456EE7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9AD511C142D397A80151FAF67D19E24C /* Build configuration list for PBXNativeTarget "Pods-GLEnvs Demo-Demo_ObjC" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B120B42FB77CF366824DA4F9E79AF4F1 /* Debug */,
+				94B6AC4D8B021575266F4995D4BB221D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AB58C563741683F62F9A623B999B406B /* Build configuration list for PBXNativeTarget "Pods-GLEnvs Demo-Demo_Swift" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				707A101BF3FAE07C00C58F23B0BBBAF9 /* Debug */,
+				4082AC5EA044C26A15283A62C4A884C9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+}

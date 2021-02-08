@@ -20,6 +20,9 @@
     self.navigationItem.leftBarButtonItem = backBarButton;
     self.navigationItem.rightBarButtonItem = saveBarButton;
     self.title = @"自定义环境";
+    self.tableView.tableFooterView = [UIView new];
+    self.tableView.tableHeaderView = [UIView new];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
 - (void)onClickCancel:(id)sender {
@@ -27,8 +30,8 @@
 }
 
 - (void)onClickSave:(id)sender {
-    if (self.saveHandle) {
-        self.saveHandle(self.data);
+    if (self.handleSave) {
+        self.handleSave(self.data);
     }
     [self onClickCancel:nil];
 }
@@ -46,19 +49,20 @@
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ENVC"];
         UILabel *label = [UILabel new];
         label.tag = 80;
-        [cell addSubview:label];
         label.font = [UIFont systemFontOfSize:12.f];
-        UITextField *tf = [[UITextField alloc]init];
-        [tf addTarget:self action:@selector(willChangeValueForKey:) forControlEvents:UIControlEventEditingChanged];
-        tf.tag = 85;
-        [cell addSubview:tf];
-        tf.borderStyle = UITextBorderStyleRoundedRect;
-        tf.font = [UIFont systemFontOfSize:10.f];
+        [cell.contentView addSubview:label];
+        UITextField *textField = [[UITextField alloc]init];
+        [textField addTarget:self action:@selector(willChangeValueForKey:) forControlEvents:UIControlEventEditingChanged];
+        textField.tag = 85;
+        textField.borderStyle = UITextBorderStyleRoundedRect;
+        textField.font = [UIFont systemFontOfSize:10.f];
+        [cell.contentView addSubview:textField];
     }
     ((UILabel *)[cell viewWithTag:80]).text = temp[indexPath.row];
     ((UILabel *)[cell viewWithTag:80]).frame = CGRectMake(10, 10, tableView.bounds.size.width - 20, 20);
     ((UITextField *)[cell viewWithTag:85]).text = self.data[temp[indexPath.row]];
-    ((UITextField *)[cell viewWithTag:85]).frame = CGRectMake(30, CGRectGetMaxY(((UILabel *)[cell viewWithTag:80]).frame) + 10, tableView.bounds.size.width - 40, 30);
+    ((UITextField *)[cell viewWithTag:85]).frame = CGRectMake(30, CGRectGetMaxY(((UILabel *)[cell viewWithTag:80]).frame) + 10, tableView.bounds.size.width - 40, 35);
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 

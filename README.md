@@ -17,7 +17,7 @@ it, simply add the following line to your Podfile:
 pod 'GLEnvs'
 ```
 
-## Simple User
+## Quick Start
 1. 进行配置
 	```objc
 	...
@@ -39,8 +39,8 @@ pod 'GLEnvs'
 		[envs enableChangeEnvironment:<#开启环境切换#> withSelectIndex:<#环境的索引编号#>];
 
         // 例如
-        // [envs enableChangeEnvironment:YES withSelectIndex:0];   // 使用者可以切换环境，使用 envs[0] 作为当前环境 
-        // [envs enableChangeEnvironment:NO withSelectIndex:1];    // 使用者无法切换环境，使用 envs[1] 作为当前环境
+        // [envs enableChangeEnvironment:YES withSelectIndex:0];   // 用户可以切换环境且使用 envs[0] 作为当前环境 
+        // [envs enableChangeEnvironment:NO withSelectIndex:1];    // 用户无法切换环境且使用 envs[1] 作为当前环境
 		
 	...
 	```
@@ -51,37 +51,84 @@ pod 'GLEnvs'
 	NSString * key = [GLEnvs loadEnv][@"nimKey"];	// [GLEnvs loadEvn]:获取当前环境，[@"nimKey"]:环境中对应的Key值
 	...
 	```
+## Advanced
+```objc
+<GLEnvs.m>
+...
+// Manual invoke to change current environment
+// 手动改变当前环境
++ manualChangeEnv:
 
-## Subspec
-None
+/// Enable GLEnvs With ...
+/// 改变环境
 
-## Requirements
-None
+// Specify String in PasteBoard
+// 从剪切板匹配指定字符串来判断是否开启摇一摇功能
+- enableWithPasteBoardString: matchingIndex: mismatchingIndex:
+
+//匹配模式，默认完全匹配 (只在PasteBoard模式生效)
+@property MatchType type; // MatchType:[完全 | 开头 | 包含 | 结尾]
+
+// App Icon pop Menu at long touch
+// 通过长按app图标弹出的菜单进行环境选择
+- enableWithShortCutItemString: PresentConfig: defaultIndex: 
+
+
+// Shake in Running
+// 摇一摇打开环境切换菜单
+- enableWithShakeMotion: defaultIndex: 
+
+/// Get Info
++ loadEnv // Get Current Environment
++ longEnvName // Get Current Environment Name
+...
+```
+
+
 
 ## History
-* 1.4.0 - 2020-12-02
-    * 增加了可以通过ShortCut ( 3D Touch 主屏图标 ) 来进行环境切换，并且可以自定义内页，来隐藏Debug模式
-* 1.3.0 - 2020-11-12
-    * 增加关于开启和关闭，现在可以通过获取剪切板内容来开启或关闭测试模式。可自定义匹配模式
-* 1.2.8 - 2020-04-02
-    * 修复一个在Debug状态下重修改环境字典未重新加载的问题（正式环境不受影响）
-* 1.2.5
-    * 维护:增加了更加明确和更加详细的注释。
-* 1.2.4
-    * 迁移:Github
-* 1.2.3
-    * 修复:方法交换问题
-    * 增加:版本号显示
-* 1.2.2
-    * 修复:修复一个崩溃Bug，对event做类型验证然后再进行后续操作
-* 1.2.1
-    * 优化:当前环境显示问题，从小方块修改成全屏条幅
-* 1.2.0
-    * 修复:一系列在真机导致崩溃的问题
-* 1.1.2
-    * fix Environment Save FAILED & Improve Save/Load to Archive
-* 1.0.0
-    * first commit
+
+<details>
+<summary> - 1.5.0 - 2021-02-08</summary>
+    <p> -- 包含了`OC`和`Swift`两个版本的`Demo`</p>
+    <p> -- 优化了环境列表弹出机制</p>
+</details>
+
+<details>
+<summary> - 1.4.0 - 2020-12-02</summary>
+    <p> -- 增加了可以通过ShortCut ( 3D Touch 主屏图标 ) 来进行环境切换，并且可以自定义内页，来隐藏Debug模式
+</details>
+
+<details>
+<summary> - 1.3.0 - 2020-11-12</summary>
+    <p> -- 增加关于开启和关闭，现在可以通过获取剪切板内容来开启或关闭测试模式。可自定义匹配模式
+</details>
+
+<details>
+<summary> - 1.2.8 - 2020-04-02</summary>
+    <p> -- 修复一个在Debug状态下重修改环境字典未重新加载的问题（正式环境不受影响）
+</details>
+
+<details>
+<summary> - More...</summary>
+<p> - 1.2.5</p>
+    <p> -- 维护:增加了更加明确和更加详细的注释</p>
+<p> - 1.2.4</p>
+    <p> -- 迁移:Github</p>
+<p> - 1.2.3</p>
+    <p> -- 修复:方法交换问题</p>
+    <p> -- 增加:版本号显示</p>
+<p> - 1.2.2</p>
+    <p> -- 修复:修复一个崩溃Bug，对event做类型验证然后再进行后续操作</p>
+<p> - 1.2.1</p>
+    <p> -- 优化:当前环境显示问题，从小方块修改成全屏条幅</p>
+<p> - 1.2.0</p>
+    <p> -- 修复:一系列在真机导致崩溃的问题</p>
+<p> - 1.1.2</p>
+    <p> -- fix Environment Save FAILED & Improve Save/Load to Archive</p>
+<p> - 1.0.0</p>
+    <p> -- first commit</p>
+</details>
 
 ## Author
 liguoliang, 36617161@qq.com
