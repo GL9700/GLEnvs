@@ -42,6 +42,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         /// set GLEnvs Enable in app and show mode
         envs.enable(withShakeMotion: true, defaultIndex: 0)
+        envs.handleListenerWillChange = { (cur:[AnyHashable : Any]?, to:[AnyHashable : Any]?) -> Bool in
+            print("这里监听了改变环境事件")
+            return false
+        }
         return true
     }
     

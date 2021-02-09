@@ -89,6 +89,11 @@ pod 'GLEnvs'
 ## History
 
 <details>
+
+<summary> - 1.5.1 - 2021-02-09</summary>
+    <p> -- 增加了对于切换环境的监听器 </p>
+</details>
+
 <summary> - 1.5.0 - 2021-02-08</summary>
     <p> -- 包含了`OC`和`Swift`两个版本的`Demo`</p>
     <p> -- 优化了环境列表弹出机制</p>

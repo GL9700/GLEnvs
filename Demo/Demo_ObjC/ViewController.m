@@ -15,7 +15,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"Demo_ObjC"
+    self.title = @"Demo_ObjC";
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -23,6 +23,10 @@
     self.label.text = [GLEnvs loadEnv][@"host"];
     [self.label sizeToFit];
     self.label.center = self.view.center;
+}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    NSLog(@"%@", [GLEnvs loadEnv]);
 }
 
 - (UILabel *)label {

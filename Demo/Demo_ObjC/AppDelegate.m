@@ -46,6 +46,18 @@
     ]];
     
     [env enableWithShakeMotion:YES defaultIndex:0];
+    
+    /// 增加针对切换环境的监听器
+    // 不定义 / 返回 YES ： 切换环境立刻重启App
+    // 返回NO           ： 立刻生效，重启App后刷新状态
+    env.handleListenerWillChange = ^BOOL(NSDictionary *curEnv, NSDictionary *toEnv) {
+        NSLog(@"Current:%@", curEnv);   // 当前环境
+        NSLog(@"To:%@", toEnv); // 切换至
+
+        // 立刻退出app，然后再次进入可以切换环境
+        // 如果返回NO，那么立刻切换环境 ( 页面和数据暂时无法同步，需要重启App来刷新界面数据 )
+        return YES;
+    };
     return YES;
 }
 

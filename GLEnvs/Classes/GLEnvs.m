@@ -60,8 +60,16 @@ NSString * const GLENV_SHORTCUT_TITLE = @"com.glenv.shortcut";
 + (void)manualChangeEnv:(NSUInteger)index {
     if(index<[GLEnvs defaultEnvs].envs.count){
         NSDictionary *envDic = [GLEnvs defaultEnvs].envs[index];
+        NSDictionary *curDict = [GLEnvs loadEnv];
         if ([GLEnvs saveEnv:envDic]) {
-            exit(1);
+            if([GLEnvs defaultEnvs].handleListenerWillChange) {
+                if([GLEnvs defaultEnvs].handleListenerWillChange(curDict, envDic)) {
+                    exit(1);
+                }
+            }
+            else{
+                exit(1);
+            }
         }
     }
 }
@@ -244,8 +252,16 @@ NSString * const GLENV_SHORTCUT_TITLE = @"com.glenv.shortcut";
                 sheetTitle = [NSString stringWithFormat:@"%@", envName];
             }
             UIAlertAction *alertAction = [UIAlertAction actionWithTitle:sheetTitle style:UIAlertActionStyleDefault handler:^(UIAlertAction *_Nonnull action) {
+                NSDictionary *curDict = [GLEnvs loadEnv];
                 if ([GLEnvs saveEnv:envDic]) {
-                    exit(1);
+                    if([GLEnvs defaultEnvs].handleListenerWillChange) {
+                        if([GLEnvs defaultEnvs].handleListenerWillChange(curDict, envDic)) {
+                            exit(1);
+                        }
+                    }
+                    else{
+                        exit(1);
+                    }
                 }
             }];
             alertAction.enabled = ![[GLEnvs loadEnvName] isEqualToString:envName];
@@ -257,8 +273,16 @@ NSString * const GLENV_SHORTCUT_TITLE = @"com.glenv.shortcut";
             GLEnvsCustomController *controller = [GLEnvsCustomController new];
             controller.data = [[GLEnvs loadEnv] mutableCopy];
             controller.handleSave = ^(NSDictionary *_Nonnull newdata) {
+                NSDictionary *curDict = [GLEnvs loadEnv];
                 if ([GLEnvs saveEnv:@{kGLEnvsCustomTitle: newdata}]) {
-                    exit(1);
+                    if([GLEnvs defaultEnvs].handleListenerWillChange) {
+                        if([GLEnvs defaultEnvs].handleListenerWillChange(curDict, newdata)) {
+                            exit(1);
+                        }
+                    }
+                    else{
+                        exit(1);
+                    }
                 }
             };
             UINavigationController *envNav = [[UINavigationController alloc]initWithRootViewController:controller];

@@ -473,8 +473,8 @@
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = Q4FM28863B;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/ObjC/objc.pch";
-				INFOPLIST_FILE = ObjC/Info.plist;
+				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/Demo_ObjC/objc.pch";
+				INFOPLIST_FILE = Demo_ObjC/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -496,8 +496,8 @@
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = Q4FM28863B;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/ObjC/objc.pch";
-				INFOPLIST_FILE = ObjC/Info.plist;
+				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/Demo_ObjC/objc.pch";
+				INFOPLIST_FILE = Demo_ObjC/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -516,6 +516,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
 				INFOPLIST_FILE = Demo_Swift/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -537,6 +539,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
 				INFOPLIST_FILE = Demo_Swift/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

@@ -30,6 +30,9 @@ typedef enum : NSUInteger {
 
 @interface GLEnvs : NSObject
 
+/// 监听环境切换，返回值: [` True 正常(直接退出app)  |  False 无需重启即刻生效(下次重启更新UI) `]
+@property (nonatomic) BOOL(^handleListenerWillChange)(NSDictionary *curEnv, NSDictionary *toEnv);
+
 /// 匹配模式，默认完全匹配 (只在PasteBoard模式生效)
 @property (nonatomic) MatchType type;
 
