@@ -16,12 +16,10 @@
 
 typedef void (*VIM) (id, SEL, ...);
 @interface GLEnvs ()
-{
-    BOOL inScreen;
-}
 @property (nonatomic, strong) NSArray *envs;
 @property (nonatomic) UIViewController *shortcutViewController;
 @property (nonatomic) UIAlertController *actionSheet;
+@property (nonatomic) UIWindow *windowForEnvs;
 @end
 
 static GLEnvs *instance;
@@ -197,32 +195,27 @@ NSString * const GLENV_SHORTCUT_TITLE = @"com.glenv.shortcut";
 }
 
 - (void)applicationDidBecomeActive {
-    if (inScreen == NO) {
-        [self showEnvInScreen];
-    }
+    [self showEnvWindow];
 }
 
 #pragma mark- 当前环境HUD
-- (void)showEnvInScreen {
+- (void)showEnvWindow {
     NSString *keystr = [GLEnvs loadEnvName];
     if (keystr) {
         NSMutableString *showStr = [NSMutableString string];
         for (int i = 0; i < 20; i++) {
-            [showStr appendFormat:@"%@ ", keystr];
+            [showStr appendFormat:@"-%@", keystr];
         }
-        UILabel *tipLabel = [[UILabel alloc]initWithFrame:CGRectZero];
-        tipLabel.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 10);
-        tipLabel.text = showStr;
-        tipLabel.lineBreakMode = NSLineBreakByClipping;
-        tipLabel.font = [UIFont systemFontOfSize:10];
-        tipLabel.textColor = [UIColor whiteColor];
-        tipLabel.backgroundColor = [UIColor colorWithRed:0 green:0 blue:1 alpha:.6];
-        tipLabel.frame = CGRectInset(tipLabel.frame, 0, -5);
-        tipLabel.textAlignment = NSTextAlignmentCenter;
-        if ([UIApplication sharedApplication].keyWindow != nil) {
-            [[UIApplication sharedApplication].keyWindow addSubview:tipLabel];
-            inScreen = YES;
-        }
+        UILabel *label = [[UILabel alloc]initWithFrame:CGRectZero];
+        label.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 10);
+        label.text = showStr;
+        label.font = [UIFont systemFontOfSize:9];
+        label.textColor = [UIColor whiteColor];
+        label.lineBreakMode = NSLineBreakByClipping;
+        label.frame = CGRectInset(label.frame, 0, -5);
+        [self.windowForEnvs addSubview:label];
+        label.center = self.windowForEnvs.center;
+        label.textAlignment = NSTextAlignmentCenter;
     }
 }
 
@@ -298,5 +291,15 @@ NSString * const GLENV_SHORTCUT_TITLE = @"com.glenv.shortcut";
         
     }
     return _actionSheet;
+}
+
+- (UIWindow *)windowForEnvs {
+    if(!_windowForEnvs) {
+        _windowForEnvs = [[UIWindow alloc] initWithFrame:[UIApplication sharedApplication].statusBarFrame];
+        _windowForEnvs.hidden = NO;
+        _windowForEnvs.windowLevel = UIWindowLevelStatusBar+1;
+        _windowForEnvs.backgroundColor = [UIColor colorWithRed:0 green:0 blue:1 alpha:.2];
+    }
+    return _windowForEnvs;
 }
 @end

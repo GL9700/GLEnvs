@@ -89,7 +89,8 @@ pod 'GLEnvs'
 ## History
 
 <details>
-
+<summary> - 1.5.2 - 2021-02-18</summary>
+    <p> -- 修正了 顶栏状态显示，可能被干掉的问题 </p>
 <summary> - 1.5.1 - 2021-02-09</summary>
     <p> -- 增加了对于切换环境的监听器 </p>
 </details>
