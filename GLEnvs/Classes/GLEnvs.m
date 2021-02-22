@@ -207,15 +207,12 @@ NSString * const GLENV_SHORTCUT_TITLE = @"com.glenv.shortcut";
             [showStr appendFormat:@"-%@", keystr];
         }
         UILabel *label = [[UILabel alloc]initWithFrame:CGRectZero];
-        label.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 10);
         label.text = showStr;
-        label.font = [UIFont systemFontOfSize:9];
         label.textColor = [UIColor whiteColor];
         label.lineBreakMode = NSLineBreakByClipping;
-        label.frame = CGRectInset(label.frame, 0, -5);
         [self.windowForEnvs addSubview:label];
-        label.center = self.windowForEnvs.center;
-        label.textAlignment = NSTextAlignmentCenter;
+        label.frame = CGRectInset(self.windowForEnvs.bounds, 0, -5);
+        label.textAlignment = NSTextAlignmentLeft;
     }
 }
 
@@ -298,7 +295,7 @@ NSString * const GLENV_SHORTCUT_TITLE = @"com.glenv.shortcut";
         _windowForEnvs = [[UIWindow alloc] initWithFrame:[UIApplication sharedApplication].statusBarFrame];
         _windowForEnvs.hidden = NO;
         _windowForEnvs.windowLevel = UIWindowLevelStatusBar+1;
-        _windowForEnvs.backgroundColor = [UIColor colorWithRed:0 green:0 blue:1 alpha:.2];
+        _windowForEnvs.backgroundColor = [UIColor colorWithRed:0 green:0 blue:1 alpha:.3];
         _windowForEnvs.userInteractionEnabled = NO;
     }
     return _windowForEnvs;
