@@ -299,6 +299,7 @@ NSString * const GLENV_SHORTCUT_TITLE = @"com.glenv.shortcut";
         _windowForEnvs.hidden = NO;
         _windowForEnvs.windowLevel = UIWindowLevelStatusBar+1;
         _windowForEnvs.backgroundColor = [UIColor colorWithRed:0 green:0 blue:1 alpha:.2];
+        _windowForEnvs.userInteractionEnabled = NO;
     }
     return _windowForEnvs;
 }

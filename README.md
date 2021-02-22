@@ -89,12 +89,21 @@ pod 'GLEnvs'
 ## History
 
 <details>
+<summary> - 1.5.3 - 2021-02-18</summary>
+    <p> -- 修正了 顶栏状态显示层，遮挡操作事件的问题 </p>
+</details>
+
+<details>
 <summary> - 1.5.2 - 2021-02-18</summary>
     <p> -- 修正了 顶栏状态显示，可能被干掉的问题 </p>
+</details>
+
+<details>    
 <summary> - 1.5.1 - 2021-02-09</summary>
     <p> -- 增加了对于切换环境的监听器 </p>
 </details>
 
+<details>
 <summary> - 1.5.0 - 2021-02-08</summary>
     <p> -- 包含了`OC`和`Swift`两个版本的`Demo`</p>
     <p> -- 优化了环境列表弹出机制</p>
