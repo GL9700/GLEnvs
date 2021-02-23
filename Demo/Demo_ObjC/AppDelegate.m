@@ -44,7 +44,7 @@
                        }
                    }
     ]];
-    
+    env.showTopLine = YES;
     [env enableWithShakeMotion:YES defaultIndex:0];
     
     /// 增加针对切换环境的监听器
