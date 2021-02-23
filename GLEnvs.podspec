@@ -16,11 +16,11 @@ Pod::Spec.new do |s|
     by liguoliang 36617161@qq.com
   DESC
 
-  s.homepage         = 'https://github.com/GL9700/GLEnvs'
+  s.homepage         = 'https://gitee.com/GL9700/GLEnvs'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'liguoliang' => '36617161@qq.com' }
-  s.source           = { :git => 'https://github.com/GL9700/GLEnvs.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://gitee.com/GL9700/GLEnvs.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '9.0'
