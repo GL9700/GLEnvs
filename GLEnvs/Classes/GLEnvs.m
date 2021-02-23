@@ -195,7 +195,9 @@ NSString * const GLENV_SHORTCUT_TITLE = @"com.glenv.shortcut";
 }
 
 - (void)applicationDidBecomeActive {
-    [self showEnvWindow];
+    if(self.showTopLine == YES) {
+        [self showEnvWindow];
+    }
 }
 
 #pragma mark- 当前环境HUD
@@ -239,7 +241,7 @@ NSString * const GLENV_SHORTCUT_TITLE = @"com.glenv.shortcut";
             NSString *envName = envDic.allKeys.firstObject;
             NSString *sheetTitle = envName;
             if([[GLEnvs loadEnvName] isEqualToString:envName]){
-                sheetTitle = [NSString stringWithFormat:@"%@", envName];
+                sheetTitle = [NSString stringWithFormat:@"-->  %@", envName];
             }
             UIAlertAction *alertAction = [UIAlertAction actionWithTitle:sheetTitle style:UIAlertActionStyleDefault handler:^(UIAlertAction *_Nonnull action) {
                 NSDictionary *curDict = [GLEnvs loadEnv];

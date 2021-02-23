@@ -36,6 +36,9 @@ typedef enum : NSUInteger {
 /// 匹配模式，默认完全匹配 (只在PasteBoard模式生效)
 @property (nonatomic) MatchType type;
 
+/// 是否开启顶栏提示条
+@property (nonatomic) BOOL showTopLine;
+
 
 /// GLEnvs 全局单例
 + (GLEnvs *)defaultEnvs;
