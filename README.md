@@ -36,12 +36,13 @@ pod 'GLEnvs'
                 }
             }
 		]];
-		[envs enableChangeEnvironment:<#开启环境切换#> withSelectIndex:<#环境的索引编号#>];
-
+        envs.showTopLine = YES; // 是否在App中显示顶部提示条
+        [envs enableChangeEnvironment:<#开启环境切换#> withSelectIndex:<#环境的索引编号#>];
+        //
         // 例如
         // [envs enableChangeEnvironment:YES withSelectIndex:0];   // 用户可以切换环境且使用 envs[0] 作为当前环境 
         // [envs enableChangeEnvironment:NO withSelectIndex:1];    // 用户无法切换环境且使用 envs[1] 作为当前环境
-		
+        //
 	...
 	```
 
@@ -89,6 +90,12 @@ pod 'GLEnvs'
 ## History
 
 <details>
+<summary> - 1.5.4 - 2021-02-23</summary>
+    <p> -- 增加了一个小功能: 使用`showTopLine`来控制是否显示顶部的提示条 </p>
+    <p> -- 并且修改为默认不显示 </p>
+</details>
+
+<details>
 <summary> - 1.5.3 - 2021-02-18</summary>
     <p> -- 修正了 顶栏状态显示层，遮挡操作事件的问题 </p>
 </details>
@@ -111,17 +118,17 @@ pod 'GLEnvs'
 
 <details>
 <summary> - 1.4.0 - 2020-12-02</summary>
-    <p> -- 增加了可以通过ShortCut ( 3D Touch 主屏图标 ) 来进行环境切换，并且可以自定义内页，来隐藏Debug模式
+    <p> -- 增加了可以通过ShortCut ( 3D Touch 主屏图标 ) 来进行环境切换，并且可以自定义内页，来隐藏Debug模式</p>
 </details>
 
 <details>
 <summary> - 1.3.0 - 2020-11-12</summary>
-    <p> -- 增加关于开启和关闭，现在可以通过获取剪切板内容来开启或关闭测试模式。可自定义匹配模式
+    <p> -- 增加关于开启和关闭，现在可以通过获取剪切板内容来开启或关闭测试模式。可自定义匹配模式</p>
 </details>
 
 <details>
 <summary> - 1.2.8 - 2020-04-02</summary>
-    <p> -- 修复一个在Debug状态下重修改环境字典未重新加载的问题（正式环境不受影响）
+    <p> -- 修复一个在Debug状态下重修改环境字典未重新加载的问题（正式环境不受影响）</p>
 </details>
 
 <details>
