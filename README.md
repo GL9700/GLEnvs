@@ -37,11 +37,10 @@ pod 'GLEnvs'
             }
 		]];
         envs.showTopLine = YES; // 是否在App中显示顶部提示条
-        [envs enableChangeEnvironment:<#开启环境切换#> withSelectIndex:<#环境的索引编号#>];
+        [envs enableWithShakeMotion:<#开启环境切换#> defaultIndex:<#环境的索引编号#>];
         //
         // 例如
-        // [envs enableChangeEnvironment:YES withSelectIndex:0];   // 用户可以切换环境且使用 envs[0] 作为当前环境 
-        // [envs enableChangeEnvironment:NO withSelectIndex:1];    // 用户无法切换环境且使用 envs[1] 作为当前环境
+        // [envs enableWithShakeMotion:YES defaultIndex:0]; // 用户可以切换环境且使用 envs[0] 作为当前环境
         //
 	...
 	```
@@ -65,7 +64,7 @@ pod 'GLEnvs'
 
 // Specify String in PasteBoard
 // 从剪切板匹配指定字符串来判断是否开启摇一摇功能
-- enableWithPasteBoardString: matchingIndex: mismatchingIndex:
+- enableWithPasteBoardString: matchSuccess: matchFailed:
 
 //匹配模式，默认完全匹配 (只在PasteBoard模式生效)
 @property MatchType type; // MatchType:[完全 | 开头 | 包含 | 结尾]
@@ -76,10 +75,10 @@ pod 'GLEnvs'
 
 
 // Shake in Running
-// 摇一摇打开环境切换菜单
+// 打开摇一摇环境切换菜单
 - enableWithShakeMotion: defaultIndex: 
 
-/// Get Info
+/// Get Inf
 + loadEnv // Get Current Environment
 + longEnvName // Get Current Environment Name
 ...
