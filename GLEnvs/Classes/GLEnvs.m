@@ -152,7 +152,7 @@ NSString * const GLENV_SHORTCUT_TITLE = @"com.glenv.shortcut";
             enable = [pbcontent isEqualToString:string];
             break;
     }
-    [self enableWithShakeMotion:enable defaultIndex:enable ? match : mismatch];
+    [self enableWithShakeMotion:enable defaultIndex:enable ? sucIndex : fadIndex];
 }
 
 - (void)enableWithShakeMotion:(BOOL)enable defaultIndex:(NSUInteger)selectIndex {
