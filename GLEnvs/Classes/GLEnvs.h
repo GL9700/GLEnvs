@@ -48,9 +48,15 @@ typedef enum : NSUInteger {
 /// 是否开启顶栏提示条
 @property (nonatomic) BOOL showTopLine;
 
-
 /// GLEnvs 全局单例
 + (GLEnvs *)defaultEnvs;
+
+/// (新)注册环境
+/// @param envsName 环境名称
+/// @param index 自定义环境Index (唯一)
+/// @param content 该环境所使用的内容
+/// @return GLEnvs实例
+- (GLEnvs *)registEnvsWithName:(NSString *)envsName Index:(NSUInteger)index Content:(NSDictionary *)content;
 
 /// GLEnvs 初始化
 /// @param envs 环境配置内容 (详见 GLEnvs.h 注释)
@@ -86,4 +92,6 @@ typedef enum : NSUInteger {
 /// 获取当前环境的名称
 /// @return 当前环境的名称
 + (NSString *)loadEnvName;
+
+- (instancetype)init NS_UNAVAILABLE;
 @end

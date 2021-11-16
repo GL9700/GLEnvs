@@ -17,6 +17,24 @@
 
 - (BOOL)application:(UIApplication *)application willFinishLaunchingWithOptions:(NSDictionary<UIApplicationLaunchOptionsKey,id> *)launchOptions {
     
+    [GLEnvs defaultEnvs]
+        .registEnvsWithName:@"开发环境" Index:0 Content:@{
+            @"host":@"https://www.baidu.com/s?wd=Development",
+            @"appkey":@"010222",
+            @"webhost":@"http://192.168.1.1",
+        }
+        .registEnvsWithName:@"测试环境" Index:1 Content:@{
+            @"host":@"https://www.baidu.com/s?wd=Test",
+            @"webhost":@"http://192.168.1.2",
+            @"appkey":@"1111111"
+        }
+        .registEnvsWithName:@"仿真环境" Index:2 Content:@{
+            @"host":@"https://www.baidu.com/s?wd=Simula",
+            @"webhost":@"http://192.168.1.3",
+            @"appkey":@"2222222"
+        }
+    ];
+    
     GLEnvs *env = [GLEnvs defaultWithEnvironments:@[
                    @{
                        @"开发环境":@{

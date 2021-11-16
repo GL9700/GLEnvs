@@ -33,6 +33,12 @@ NSString * const GLENV_SHORTCUT_TITLE = @"com.glenv.shortcut";
     });
     return instance;
 }
+- (GLEnvs *)registEnvsWithName:(NSString *)envsName Index:(NSUInteger)index Content:(NSDictionary *)content {
+    
+    
+    
+    return instance;
+}
 
 + (GLEnvs *)defaultWithEnvironments:(NSArray<NSDictionary *> *)envs {
     if (!instance) [GLEnvs defaultEnvs];
