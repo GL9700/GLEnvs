@@ -83,11 +83,14 @@ typedef enum : NSUInteger {
 /// @param title 菜单项标题
 /// @param configViewController 弹出的页面名称(需要<GLEnvsProtocol>协议)
 /// @param index 直接点击App图标进入的环境索引值
-- (void)enableWithShortCutItemString:(NSString *)title PresentConfig:(UIViewController<GLEnvsProtocol>*)configViewController defaultIndex:(NSUInteger)index;
+- (void)enableWithShortCutItemString:(NSString *)title PresentConfig:(UIViewController<GLEnvsProtocol>*)configViewController defaultIndex:(NSUInteger)index OBJC_DEPRECATED("replace [+current]");
+
+
++ (NSDictionary *)current;
 
 /// 获取当前的环境
 /// @return 当前环境的配置项
-+ (NSDictionary *)loadEnv;
++ (NSDictionary *)loadEnv OBJC_DEPRECATED("replace [+current]");
 
 /// 获取当前环境的名称
 /// @return 当前环境的名称

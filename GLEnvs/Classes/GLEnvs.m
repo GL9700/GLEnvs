@@ -16,7 +16,7 @@
 
 typedef void (*VIM) (id, SEL, ...);
 @interface GLEnvs ()
-@property (nonatomic, strong) NSArray *envs;
+@property (nonatomic, strong) NSArray<NSDictionary *> *envs;
 @property (nonatomic) UIViewController *shortcutViewController;
 @property (nonatomic) UIWindow *windowForEnvs;
 @end
@@ -33,17 +33,27 @@ NSString * const GLENV_SHORTCUT_TITLE = @"com.glenv.shortcut";
     });
     return instance;
 }
+
 - (GLEnvs *)registEnvsWithName:(NSString *)envsName Index:(NSUInteger)index Content:(NSDictionary *)content {
-    
-    
-    
-    return instance;
+    if(index == self.envs.count) {
+        NSMutableArray *arr = [NSMutableArray arrayWithArray:self.envs];
+        [arr addObject:@{envsName : content}];
+        self.envs = [arr copy];
+    }else{
+        NSAssert(NO, @"index Not Orderly ( index 不是一个有序值 ) !!");
+    }
+    return self;
 }
 
 + (GLEnvs *)defaultWithEnvironments:(NSArray<NSDictionary *> *)envs {
     if (!instance) [GLEnvs defaultEnvs];
     instance.envs = envs;
     return instance;
+}
+
++ (NSDictionary *)current {
+    NSDictionary *dic = [NSKeyedUnarchiver unarchiveObjectWithFile:kArchivePath];
+    return dic.allValues.firstObject;
 }
 
 + (NSDictionary *)loadEnv {
@@ -109,22 +119,40 @@ NSString * const GLENV_SHORTCUT_TITLE = @"com.glenv.shortcut";
     }
 }
 
+
 - (void)_glenv_application:(UIApplication *)application performActionForShortcutItem:(UIApplicationShortcutItem *)shortcutItem completionHandler:(void (^)(BOOL))completionHandler {
-    if([self respondsToSelector:@selector(application:performActionForShortcutItem:completionHandler:)]){
-        if([shortcutItem.type isEqualToString:@"com.glenv.shortcut"]) {
-            if([GLEnvs defaultEnvs].shortcutViewController){
-                UIViewController *rootVC = [UIApplication sharedApplication].keyWindow.rootViewController;
-                while (rootVC.presentedViewController) {
-                    rootVC = rootVC.presentedViewController;
-                }
-                [rootVC presentViewController:[GLEnvs defaultEnvs].shortcutViewController animated:YES completion:nil];
-            }
+    if([shortcutItem.type hasPrefix:GLENV_SHORTCUT_TITLE]) {
+        NSArray<NSString *> *compons = [shortcutItem.type componentsSeparatedByString:@"."];
+        if([GLEnvs defaultEnvs].shortcutViewController){
+            [GLEnvs manualChangeEnv:compons.lastObject.intValue];
         }
+    }
+    if([self respondsToSelector:@selector(application:performActionForShortcutItem:completionHandler:)]){
         [[GLEnvs defaultEnvs] _glenv_application:application performActionForShortcutItem:shortcutItem completionHandler:completionHandler];
     }
 }
 
-- (void)enableWithShortCutItemString:(NSString *)title PresentConfig:(UIViewController<GLEnvsProtocol>*)configViewController defaultIndex:(NSUInteger)index{
+- (void)enableWithShortCutItemChooseHandle:(void(^)(UIMutableApplicationShortcutItem *item))handle {
+    NSMutableArray<UIMutableApplicationShortcutItem *> *shortcuts = [NSMutableArray array];
+    for (int i=0;i<self.envs.count;i++) {
+        NSDictionary *dict = self.envs[i];
+        NSString *itemTitle = dict.allKeys.firstObject;
+        UIMutableApplicationShortcutItem *item = [[UIMutableApplicationShortcutItem alloc] initWithType:[NSString stringWithFormat:@"%@.%d", GLENV_SHORTCUT_TITLE, i] localizedTitle:itemTitle];
+        [shortcuts addObject:item];
+    }
+    [UIApplication sharedApplication].shortcutItems = [shortcuts copy];
+    
+    Method method1 = class_getInstanceMethod([UIApplication sharedApplication].delegate.class, @selector(application:performActionForShortcutItem:completionHandler:));
+    Method method2 = class_getInstanceMethod(self.class, @selector(_glenv_application:performActionForShortcutItem:completionHandler:));
+    if(method1 == NULL){
+        class_addMethod([UIApplication sharedApplication].delegate.class, @selector(application:performActionForShortcutItem:completionHandler:), method_getImplementation(method2), method_getTypeEncoding(method2));
+    }else{
+        method_exchangeImplementations(method1, method2);
+    }
+}
+- (void)enableWithShortCutItemString:(NSString *)title
+                       PresentConfig:(UIViewController<GLEnvsProtocol>*)configViewController
+                        defaultIndex:(NSUInteger)index {
     [self defaultEnvIndex:index];
     if(configViewController!=nil){
         self.shortcutViewController = configViewController;
@@ -164,7 +192,7 @@ NSString * const GLENV_SHORTCUT_TITLE = @"com.glenv.shortcut";
 - (void)enableWithShakeMotion:(BOOL)enable defaultIndex:(NSUInteger)selectIndex {
     NSAssert(selectIndex < self.envs.count, @"环境配置列表越界");
     NSString *currentEnvName = [GLEnvs loadEnvName];
-    NSDictionary *currentEnv = [GLEnvs loadEnv];
+    NSDictionary *currentEnv = [GLEnvs current];
     NSDictionary *newEnv = nil;
     NSDictionary *envDic = self.envs[selectIndex];
     // 未找到环境(写入新环境)
@@ -222,6 +250,7 @@ NSString * const GLENV_SHORTCUT_TITLE = @"com.glenv.shortcut";
         label.textAlignment = NSTextAlignmentLeft;
     }
 }
+
 
 #pragma mark- 显示环境切换列表
 - (void)showEnvChanger {
