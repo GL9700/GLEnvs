@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'GLEnvs'
-  s.version          = '1.5.7'
+  s.version          = '1.5.8'
   s.summary          = 'GLEnv 可以在app中快速切换至想要的环境'
   s.description      = <<-DESC
     GLEnvs 快速切换app的环境

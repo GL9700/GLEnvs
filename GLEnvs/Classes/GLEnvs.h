@@ -83,8 +83,8 @@ typedef enum : NSUInteger {
 /// @param title 菜单项标题
 /// @param configViewController 弹出的页面名称(需要<GLEnvsProtocol>协议)
 /// @param index 直接点击App图标进入的环境索引值
-- (void)enableWithShortCutItemString:(NSString *)title PresentConfig:(UIViewController<GLEnvsProtocol>*)configViewController defaultIndex:(NSUInteger)index OBJC_DEPRECATED("replace [+current]");
-
+- (void)enableWithShortCutItemString:(NSString *)title PresentConfig:(UIViewController<GLEnvsProtocol>*)configViewController defaultIndex:(NSUInteger)index NS_UNAVAILABLE;
+//OBJC_DEPRECATED("replace [-enableWithShortCutItemChooseHandle:]");
 
 + (NSDictionary *)current;
 
@@ -97,4 +97,11 @@ typedef enum : NSUInteger {
 + (NSString *)loadEnvName;
 
 - (instancetype)init NS_UNAVAILABLE;
+@end
+
+
+@interface GLEnvs(ShortcutExt)
+/// 设置使用长按切换环境
+/// @param handle 自定义长按事件
+- (void)enableWithShortCutItemChooseHandle:(void(^)(UIMutableApplicationShortcutItem *item))handle;
 @end

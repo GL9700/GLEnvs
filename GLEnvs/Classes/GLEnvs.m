@@ -19,6 +19,9 @@ typedef void (*VIM) (id, SEL, ...);
 @property (nonatomic, strong) NSArray<NSDictionary *> *envs;
 @property (nonatomic) UIViewController *shortcutViewController;
 @property (nonatomic) UIWindow *windowForEnvs;
+
+@property (nonatomic) UIMutableApplicationShortcutItem *selectedShortcutItem;
+@property (nonatomic) void(^handleshortCutItemCusHandle)(UIMutableApplicationShortcutItem *item);
 @end
 
 static GLEnvs *instance;
@@ -73,7 +76,7 @@ NSString * const GLENV_SHORTCUT_TITLE = @"com.glenv.shortcut";
 + (void)manualChangeEnv:(NSUInteger)index {
     if(index<[GLEnvs defaultEnvs].envs.count){
         NSDictionary *envDic = [GLEnvs defaultEnvs].envs[index];
-        NSDictionary *curDict = [GLEnvs loadEnv];
+        NSDictionary *curDict = [GLEnvs current];
         if ([GLEnvs saveEnv:envDic]) {
             if([GLEnvs defaultEnvs].handleListenerWillChange) {
                 if([GLEnvs defaultEnvs].handleListenerWillChange(curDict, envDic)) {
@@ -88,7 +91,7 @@ NSString * const GLENV_SHORTCUT_TITLE = @"com.glenv.shortcut";
 }
 - (void)defaultEnvIndex:(NSUInteger)index {
     NSAssert(index < self.envs.count, @"环境配置列表越界");
-    if([GLEnvs loadEnv] == nil){
+    if([GLEnvs current] == nil){
         [GLEnvs saveEnv:self.envs[index]];
     }
 }
@@ -116,56 +119,6 @@ NSString * const GLENV_SHORTCUT_TITLE = @"com.glenv.shortcut";
         NSMutableArray *shortcutItems = [[UIApplication sharedApplication].shortcutItems mutableCopy];
         [shortcutItems removeObjectAtIndex:index];
         [UIApplication sharedApplication].shortcutItems = [shortcutItems copy];
-    }
-}
-
-
-- (void)_glenv_application:(UIApplication *)application performActionForShortcutItem:(UIApplicationShortcutItem *)shortcutItem completionHandler:(void (^)(BOOL))completionHandler {
-    if([shortcutItem.type hasPrefix:GLENV_SHORTCUT_TITLE]) {
-        NSArray<NSString *> *compons = [shortcutItem.type componentsSeparatedByString:@"."];
-        if([GLEnvs defaultEnvs].shortcutViewController){
-            [GLEnvs manualChangeEnv:compons.lastObject.intValue];
-        }
-    }
-    if([self respondsToSelector:@selector(application:performActionForShortcutItem:completionHandler:)]){
-        [[GLEnvs defaultEnvs] _glenv_application:application performActionForShortcutItem:shortcutItem completionHandler:completionHandler];
-    }
-}
-
-- (void)enableWithShortCutItemChooseHandle:(void(^)(UIMutableApplicationShortcutItem *item))handle {
-    NSMutableArray<UIMutableApplicationShortcutItem *> *shortcuts = [NSMutableArray array];
-    for (int i=0;i<self.envs.count;i++) {
-        NSDictionary *dict = self.envs[i];
-        NSString *itemTitle = dict.allKeys.firstObject;
-        UIMutableApplicationShortcutItem *item = [[UIMutableApplicationShortcutItem alloc] initWithType:[NSString stringWithFormat:@"%@.%d", GLENV_SHORTCUT_TITLE, i] localizedTitle:itemTitle];
-        [shortcuts addObject:item];
-    }
-    [UIApplication sharedApplication].shortcutItems = [shortcuts copy];
-    
-    Method method1 = class_getInstanceMethod([UIApplication sharedApplication].delegate.class, @selector(application:performActionForShortcutItem:completionHandler:));
-    Method method2 = class_getInstanceMethod(self.class, @selector(_glenv_application:performActionForShortcutItem:completionHandler:));
-    if(method1 == NULL){
-        class_addMethod([UIApplication sharedApplication].delegate.class, @selector(application:performActionForShortcutItem:completionHandler:), method_getImplementation(method2), method_getTypeEncoding(method2));
-    }else{
-        method_exchangeImplementations(method1, method2);
-    }
-}
-- (void)enableWithShortCutItemString:(NSString *)title
-                       PresentConfig:(UIViewController<GLEnvsProtocol>*)configViewController
-                        defaultIndex:(NSUInteger)index {
-    [self defaultEnvIndex:index];
-    if(configViewController!=nil){
-        self.shortcutViewController = configViewController;
-        UIApplicationShortcutItem *item = [[UIApplicationShortcutItem alloc] initWithType:GLENV_SHORTCUT_TITLE localizedTitle:title];
-        [self shortCutAddItem:item];
-        
-        Method method1 = class_getInstanceMethod([UIApplication sharedApplication].delegate.class, @selector(application:performActionForShortcutItem:completionHandler:));
-        Method method2 = class_getInstanceMethod(self.class, @selector(_glenv_application:performActionForShortcutItem:completionHandler:));
-        if(method1 == NULL){
-            class_addMethod([UIApplication sharedApplication].delegate.class, @selector(application:performActionForShortcutItem:completionHandler:), method_getImplementation(method2), method_getTypeEncoding(method2));
-        }else{
-            method_exchangeImplementations(method1, method2);
-        }
     }
 }
 
@@ -333,5 +286,47 @@ NSString * const GLENV_SHORTCUT_TITLE = @"com.glenv.shortcut";
         _windowForEnvs.userInteractionEnabled = NO;
     }
     return _windowForEnvs;
+}
+@end
+
+
+
+
+@implementation GLEnvs(ShortcutExt)
+
+- (void)_glenv_application:(UIApplication *)application performActionForShortcutItem:(UIApplicationShortcutItem *)shortcutItem completionHandler:(void (^)(BOOL))completionHandler {
+    if(self.handleshortCutItemCusHandle){
+        self.handleshortCutItemCusHandle(self.selectedShortcutItem);
+    }else{
+        if([shortcutItem.type hasPrefix:GLENV_SHORTCUT_TITLE]) {
+            NSArray<NSString *> *compons = [shortcutItem.type componentsSeparatedByString:@"."];
+            if([GLEnvs defaultEnvs].shortcutViewController){
+                [GLEnvs manualChangeEnv:compons.lastObject.intValue];
+            }
+        }
+    }
+    if([self respondsToSelector:@selector(application:performActionForShortcutItem:completionHandler:)]){
+        [[GLEnvs defaultEnvs] _glenv_application:application performActionForShortcutItem:shortcutItem completionHandler:completionHandler];
+    }
+}
+
+- (void)enableWithShortCutItemChooseHandle:(void(^)(UIMutableApplicationShortcutItem *item))handle {
+    self.handleshortCutItemCusHandle = handle;
+    NSMutableArray<UIMutableApplicationShortcutItem *> *shortcuts = [NSMutableArray array];
+    for (int i=0;i<self.envs.count;i++) {
+        NSDictionary *dict = self.envs[i];
+        NSString *itemTitle = dict.allKeys.firstObject;
+        UIMutableApplicationShortcutItem *item = [[UIMutableApplicationShortcutItem alloc] initWithType:[NSString stringWithFormat:@"%@.%d", GLENV_SHORTCUT_TITLE, i] localizedTitle:itemTitle];
+        [shortcuts addObject:item];
+    }
+    [UIApplication sharedApplication].shortcutItems = [shortcuts copy];
+    
+    Method method1 = class_getInstanceMethod([UIApplication sharedApplication].delegate.class, @selector(application:performActionForShortcutItem:completionHandler:));
+    Method method2 = class_getInstanceMethod(self.class, @selector(_glenv_application:performActionForShortcutItem:completionHandler:));
+    if(method1 == NULL){
+        class_addMethod([UIApplication sharedApplication].delegate.class, @selector(application:performActionForShortcutItem:completionHandler:), method_getImplementation(method2), method_getTypeEncoding(method2));
+    }else{
+        method_exchangeImplementations(method1, method2);
+    }
 }
 @end

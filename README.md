@@ -89,6 +89,10 @@ pod 'GLEnvs'
 ## History
 
 <details>
+<summary> - 1.5.8 - 2021-11-23</summary>
+    <p> -- 增加了实用 shortcutItem 来进行设置环境 (3d touch) </p>
+</details>
+
 <summary> - 1.5.4 - 2021-02-23</summary>
     <p> -- 增加了一个小功能: 使用`showTopLine`来控制是否显示顶部的提示条 </p>
     <p> -- 并且修改为默认不显示 </p>
