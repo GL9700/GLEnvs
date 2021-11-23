@@ -15,24 +15,23 @@
 #define kGLEnvsSelectorTipStr @"*** 切换环境后,程序将自动退出 ***"
 
 typedef void (*VIM) (id, SEL, ...);
+
+static GLEnvs *instance;
+
 @interface GLEnvs ()
 @property (nonatomic, strong) NSArray<NSDictionary *> *envs;
 @property (nonatomic) UIViewController *shortcutViewController;
 @property (nonatomic) UIWindow *windowForEnvs;
-
-@property (nonatomic) UIMutableApplicationShortcutItem *selectedShortcutItem;
 @property (nonatomic) void(^handleshortCutItemCusHandle)(UIMutableApplicationShortcutItem *item);
+
 @end
 
-static GLEnvs *instance;
-NSString * const GLENV_SHORTCUT_TITLE = @"com.glenv.shortcut";
 @implementation GLEnvs
 
 + (GLEnvs *)defaultEnvs {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         instance = [[GLEnvs alloc]init];
-        [instance shortCutRemoveItemWithType:GLENV_SHORTCUT_TITLE];
     });
     return instance;
 }
@@ -93,32 +92,6 @@ NSString * const GLENV_SHORTCUT_TITLE = @"com.glenv.shortcut";
     NSAssert(index < self.envs.count, @"环境配置列表越界");
     if([GLEnvs current] == nil){
         [GLEnvs saveEnv:self.envs[index]];
-    }
-}
-- (void)shortCutAddItem:(UIApplicationShortcutItem *)item {
-    BOOL isFindItem = NO;
-    for (UIApplicationShortcutItem *itemp in [UIApplication sharedApplication].shortcutItems) {
-        if([itemp.type isEqualToString:item.type]){
-            isFindItem = YES;
-        }
-    }
-    if(isFindItem==NO){
-        NSArray *shortcutItems = [[UIApplication sharedApplication].shortcutItems arrayByAddingObject:item];
-        [UIApplication sharedApplication].shortcutItems = shortcutItems;
-    }
-}
-- (void)shortCutRemoveItemWithType:(NSString *)type {
-    int index = -1;
-    for (int i=0;i<[UIApplication sharedApplication].shortcutItems.count;i++) {
-        UIApplicationShortcutItem *itemp = [UIApplication sharedApplication].shortcutItems[i];
-        if([itemp.type isEqualToString:type]){
-            index = i;
-        }
-    }
-    if(index>=0) {
-        NSMutableArray *shortcutItems = [[UIApplication sharedApplication].shortcutItems mutableCopy];
-        [shortcutItems removeObjectAtIndex:index];
-        [UIApplication sharedApplication].shortcutItems = [shortcutItems copy];
     }
 }
 
@@ -205,7 +178,7 @@ NSString * const GLENV_SHORTCUT_TITLE = @"com.glenv.shortcut";
 }
 
 
-#pragma mark- 显示环境切换列表
+// UI 显示环境切换列表
 - (void)showEnvChanger {
     UIAlertController *ac = [self ActionSheet];
     if(ac.presentingViewController==nil) {
@@ -217,9 +190,14 @@ NSString * const GLENV_SHORTCUT_TITLE = @"com.glenv.shortcut";
     }
 }
 
-- (UIAlertController *)ActionSheet {
+// 返回app版本等信息
+- (NSString *)appVersionInfo {
     NSDictionary *info = [NSBundle mainBundle].infoDictionary;
-    NSString *title = [NSString stringWithFormat:@"%@ | 版本:%@ | Build:%@", info[@"CFBundleDisplayName"] ? : info[@"CFBundleName"], info[@"CFBundleShortVersionString"], info[@"CFBundleVersion"]];
+    return [NSString stringWithFormat:@"%@ | 版本:%@ | Build:%@", info[@"CFBundleDisplayName"] ? : info[@"CFBundleName"], info[@"CFBundleShortVersionString"], info[@"CFBundleVersion"]];
+}
+
+- (UIAlertController *)ActionSheet {
+    NSString *title = [self appVersionInfo];
     UIAlertController *ac = [UIAlertController alertControllerWithTitle:title message:kGLEnvsSelectorTipStr preferredStyle:UIAlertControllerStyleAlert];
     
     // 所有环境
@@ -289,20 +267,20 @@ NSString * const GLENV_SHORTCUT_TITLE = @"com.glenv.shortcut";
 }
 @end
 
-
-
+/*
+ * --------Extension---------
+ */
+NSString * const GLENV_SHORTCUT_TITLE = @"com.glenv.shortcut";
 
 @implementation GLEnvs(ShortcutExt)
 
+// 与系统的shortcut点击方法进行交换的原始方法
 - (void)_glenv_application:(UIApplication *)application performActionForShortcutItem:(UIApplicationShortcutItem *)shortcutItem completionHandler:(void (^)(BOOL))completionHandler {
-    if(self.handleshortCutItemCusHandle){
-        self.handleshortCutItemCusHandle(self.selectedShortcutItem);
-    }else{
-        if([shortcutItem.type hasPrefix:GLENV_SHORTCUT_TITLE]) {
-            NSArray<NSString *> *compons = [shortcutItem.type componentsSeparatedByString:@"."];
-            if([GLEnvs defaultEnvs].shortcutViewController){
-                [GLEnvs manualChangeEnv:compons.lastObject.intValue];
-            }
+    if([shortcutItem.type hasPrefix:GLENV_SHORTCUT_TITLE]) {
+        if([GLEnvs defaultEnvs].handleshortCutItemCusHandle){
+            [GLEnvs defaultEnvs].handleshortCutItemCusHandle(shortcutItem);
+        }else{
+            [GLEnvs manualChangeEnv:[shortcutItem.type componentsSeparatedByString:@"."].lastObject.intValue];
         }
     }
     if([self respondsToSelector:@selector(application:performActionForShortcutItem:completionHandler:)]){
@@ -310,15 +288,26 @@ NSString * const GLENV_SHORTCUT_TITLE = @"com.glenv.shortcut";
     }
 }
 
+// 开启切换环境 模式：shortcut
 - (void)enableWithShortCutItemChooseHandle:(void(^)(UIMutableApplicationShortcutItem *item))handle {
+    NSLog(@">-> GLEnvs : %@", [GLEnvs loadEnvName]);
     self.handleshortCutItemCusHandle = handle;
     NSMutableArray<UIMutableApplicationShortcutItem *> *shortcuts = [NSMutableArray array];
     for (int i=0;i<self.envs.count;i++) {
         NSDictionary *dict = self.envs[i];
         NSString *itemTitle = dict.allKeys.firstObject;
-        UIMutableApplicationShortcutItem *item = [[UIMutableApplicationShortcutItem alloc] initWithType:[NSString stringWithFormat:@"%@.%d", GLENV_SHORTCUT_TITLE, i] localizedTitle:itemTitle];
+        if([itemTitle isEqualToString:[GLEnvs loadEnvName]]) {
+            itemTitle = [NSString stringWithFormat:@"🔍 > %@", itemTitle];
+        }
+        UIMutableApplicationShortcutItem *item = [[UIMutableApplicationShortcutItem alloc]
+                                                  initWithType:[NSString stringWithFormat:@"%@.%d", GLENV_SHORTCUT_TITLE, i]
+                                                  localizedTitle:itemTitle];
         [shortcuts addObject:item];
     }
+    UIMutableApplicationShortcutItem *item = [[UIMutableApplicationShortcutItem alloc]
+                                              initWithType:@"Version"
+                                              localizedTitle:[self appVersionInfo]];
+    [shortcuts addObject:item];
     [UIApplication sharedApplication].shortcutItems = [shortcuts copy];
     
     Method method1 = class_getInstanceMethod([UIApplication sharedApplication].delegate.class, @selector(application:performActionForShortcutItem:completionHandler:));

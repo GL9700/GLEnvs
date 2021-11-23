@@ -89,6 +89,11 @@ pod 'GLEnvs'
 ## History
 
 <details>
+
+<summary> - 1.5.9 - 2021-11-23</summary>
+    <p> -- 修复 shortcutItem 在某些已知情况下不可用的情况 </p>
+</details>
+
 <summary> - 1.5.8 - 2021-11-23</summary>
     <p> -- 增加了实用 shortcutItem 来进行设置环境 (3d touch) </p>
 </details>
